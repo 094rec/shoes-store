@@ -13,11 +13,20 @@ export default {
     },
   },
   safelist: [
-    { pattern: /from-(red|green|blue|emerald|yellow|purple|pink|orange|indigo|gray)-500/ },
-    { pattern: /to-(red|green|blue|emerald|yellow|purple|pink|orange|indigo|gray)-500/ },
+    {
+      pattern:
+        /from-(sky|green|red|orange|gray|blue|yellow|indigo|slate|lime|cyan|violet|emerald|rose|amber|black|[#936550])-500/,
+    },
+    {
+      pattern:
+        /to-(indigo|emerald|rose|amber|yellow|cyan|orange|black|blue|lime|violet|red|green|[#936550])-500/,
+    },
+    { pattern: /to-(orange|yellow|blue|black|indigo|orange)-900/ }, 
 
     { pattern: /shadow-(sm|md|lg|xl|2xl)/ },
-    { pattern: /shadow-(red|green|blue|emerald|yellow|purple|pink|orange|indigo|gray)-500/ },
+    { pattern: /shadow-(green|blue|rose|orange|yellow|cyan|indigo|black|lime|violet)-500/ },
+    { pattern: /shadow-orange-800/ }, 
   ],
+
   plugins: [],
 };
