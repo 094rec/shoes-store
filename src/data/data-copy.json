@@ -1,0 +1,158 @@
+[
+  {
+    "id": "1",
+    "title": "Nike Air Low Premium",
+    "text": "MEN Running Shoes",
+    "rank": "4.1",
+    "img": "http://193.149.129.105/shoes/product7.png",
+    "imgs": [
+      "http://193.149.129.105/shoes/prod7/prod7-1.png",
+      "http://193.149.129.105/shoes/prod7/prod7-2.png",
+      "http://193.149.129.105/shoes/prod7/prod7-3.png",
+      "http://193.149.129.105/shoes/prod7/prod7-4.png"
+    ],
+    "price": "200",
+    "color": "from-sky-600 to-indigo-600",
+    "shadow": "shadow-lg shadow-blue-500"
+  },
+  {
+    "id": "2",
+    "title": "Nike Air Force Green",
+    "text": "MEN Running Shoes",
+    "rank": "3.9",
+    "img": "http://193.149.129.105/shoes/product2.png",
+    "price": "160",
+    "color": "from-green-500 to-emerald-500",
+    "shadow": "shadow-lg shadow-green-500"
+  },
+  {
+    "id": "3",
+    "title": "Nike Addapt BB Rose",
+    "text": "MEN Running Shoes",
+    "rank": "4.6",
+    "img": "http://193.149.129.105/shoes/product3.png",
+    "price": "260",
+    "color": "from-red-500 to-rose-500",
+    "shadow": "shadow-lg shadow-rose-500"
+  },
+  {
+    "id": "4",
+    "title": "Nike Air Premium",
+    "text": "MEN Running Shoes",
+    "rank": "4.5",
+    "img": "http://193.149.129.105/shoes/product4.png",
+    "price": "230",
+    "color": "from-orange-500 to-amber-500",
+    "shadow": "shadow-lg shadow-orange-500"
+  },
+  {
+    "id": "5",
+    "title": "Nike Adapt BB Pro",
+    "text": "MEN Running Shoes",
+    "rank": "4.3",
+    "img": "http://193.149.129.105/shoes/product5.png",
+    "price": "190",
+    "color": "from-gray-900 to-yellow-500",
+    "shadow": "shadow-lg shadow-yellow-500"
+  },
+  {
+    "id": "6",
+    "title": "Air Jordan PR3",
+    "text": "MEN Running Shoes",
+    "rank": "3.9",
+    "img": "http://193.149.129.105/shoes/product6.png",
+    "price": "150",
+    "color": "from-blue-500 to-cyan-500",
+    "shadow": "shadow-lg shadow-cyan-500"
+  },
+  {
+    "id": "7",
+    "title": "Nike Multi Smart Shoe",
+    "text": "MEN Running Shoes",
+    "rank": "4.2",
+    "img": "http://193.149.129.105/shoes/product1.png",
+    "price": "215",
+    "color": "from-yellow-500 to-yellow-500",
+    "shadow": "shadow-lg shadow-yellow-500"
+  },
+  {
+    "id": "8",
+    "title": "Nike Jordan Air Max",
+    "text": "MEN Running Shoes",
+    "rank": "4",
+    "img": "http://193.149.129.105/shoes/product9.png",
+    "price": "210",
+    "color": "from-[#936550] to-orange-900",
+    "shadow": "shadow-lg shadow-orange-800"
+  },
+  {
+    "id": "9",
+    "title": "Nike Old Max-x",
+    "text": "MEN Running Shoes",
+    "rank": "4.0",
+    "img": "http://193.149.129.105/shoes/product10.png",
+    "price": "225",
+    "color": "from-indigo-700 to-indigo-700",
+    "shadow": "shadow-lg shadow-indigo-500"
+  },
+  {
+    "id": "10",
+    "title": "Nike Lime Jordan 11",
+    "text": "MEN Running Shoes",
+    "rank": "4.1",
+    "img": "http://193.149.129.105/shoes/product12.png",
+    "price": "220",
+    "color": "from-green-600 to-lime-500",
+    "shadow": "shadow-lg shadow-lime-500"
+  },
+  {
+    "id": "11",
+    "title": "Nike Air Black Max",
+    "text": "MEN Running Shoes",
+    "rank": "4.5",
+    "img": "http://193.149.129.105/shoes/product11.png",
+    "price": "250",
+    "color": "from-slate-900 to-black",
+    "shadow": "shadow-lg shadow-black"
+  },
+  {
+    "id": "12",
+    "title": "Nike Zoom Max",
+    "text": "MEN Running Shoes",
+    "rank": "4.8",
+    "img": "http://193.149.129.105/shoes/product8.png",
+    "price": "290",
+    "color": "from-blue-900 to-blue-500",
+    "shadow": "shadow-lg shadow-blue-500"
+  },
+  {
+    "id": "13",
+    "title": "Nike Addapt BB 2.0",
+    "text": "MEN Running Shoes",
+    "rank": "4.9",
+    "img": "http://193.149.129.105/shoes/nike-adapt-bb.png",
+    "price": "280",
+    "color": "from-blue-600 to-blue-500",
+    "shadow": "shadow-lg shadow-blue-500"
+  },
+  {
+    "id": "14",
+    "title": "Nike Martine Rose",
+    "text": "MEN Running Shoes",
+    "rank": "4.3",
+    "img": "http://193.149.129.105/shoes/nike-air-red.png",
+    "price": "220",
+    "color": "from-red-500 to-rose-500",
+    "shadow": "shadow-lg shadow-rose-500"
+  },
+  {
+    "id": "15",
+    "title": "Nike Smart Shoe 2.0",
+    "text": "MEN Running Shoes",
+    "rank": "4.8",
+    "img": "http://193.149.129.105/shoes/nike-adapt-bb-smart.png",
+    "price": "270",
+    "color": "from-violet-500 to-indigo-500",
+    "shadow": "shadow-lg shadow-violet-500"
+  }
+]
