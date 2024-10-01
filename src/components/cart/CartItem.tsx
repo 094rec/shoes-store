@@ -3,8 +3,9 @@ import { addItem, delItem, removeItem, TCartItem } from '../../redux/slices/cart
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { useCartContext } from '../../hooks/useCartContext';
+import React from 'react';
 
-export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
+export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) => {
   const disp = useDispatch();
   const nav = useNavigate();
   const { setCartState } = useCartContext();
@@ -54,4 +55,4 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
       </div>
     </>
   );
-};
+});

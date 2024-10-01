@@ -30,7 +30,7 @@ export const Desc = ({ id, title, text, img, price }: TItem) => {
             <div className="flex justify-center">
               <button
                 onClick={(e) => addItemBtn(e)}
-                className="btn-theme opacity-80 text-xs xx:text-sm p-0.5 px-2 xs:py-0.5 bg-white/60 text-slate-900 transition-all duration-300 hover:scale-105 active:scale-90"
+                className="btn-theme opacity-80 text-sm p-0.5 px-2 xs:py-0.5 bg-white/60 text-slate-900 transition-all duration-300 hover:scale-105 active:scale-90"
               >
                 {!btnState ? 'Buy now' : 'Go cart'}
               </button>
