@@ -34,7 +34,7 @@ export const HomePage = () => {
 
   const { data, isLoading, error } = useFetchShoes(
     ['shoes', page, limit, searchVal, param],
-    `https://66efa6eff2a8bce81be3ba6e.mockapi.io/items?l=${searchVal ? '' : limit}&p=${searchVal ? '' : page}&title=${searchVal}&sortBy=${param}${param === 'rank' ? '&order=desc' : ''}`,
+    `https://66efa6eff2a8bce81be3ba6e.mockapi.io/items?${searchVal ? '' : `l=${limit}&p=${page}&`}${searchVal ? `title=${searchVal}&` : ''}sortBy=${param}${param === 'rank' ? '&order=desc' : ''}`,
   );
   if (error) return null;
 
