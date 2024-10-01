@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSearchContext } from '../../../hooks/useSearchContext';
 import { Clip } from './Clip';
+import clsx from 'clsx';
 
 type Props = {
   title: string;
@@ -21,7 +22,12 @@ export const Hero = React.memo(({ title, subtitle, img, btntext, videos, sociall
   return (
     <>
       <div
-        className={`transition-all duration-300 ${!val ? 'relative opacity-100 visible translate-x-0' : 'absolute opacity-0 invisible translate-x-8'} flex flex-col mb-10 xx:mb-18 sm:mb-28 -mt-2`}
+        className={clsx(
+          'transition-all duration-300 flex flex-col mb-10 xx:mb-18 sm:mb-28 -mt-2',
+          !val
+            ? 'relative opacity-100 visible translate-x-0'
+            : 'absolute opacity-0 invisible translate-x-8',
+        )}
       >
         <div className="bg-theme clip-path absolute left-0 right-0 top-0 z-10 h-[55vh] sm:h-[65vh] md:h-[75vh] lg:h-[85vh]"></div>
         <div className="nike-container relative z-20 flex flex-col items-center justify-center gap-4">
@@ -47,7 +53,10 @@ export const Hero = React.memo(({ title, subtitle, img, btntext, videos, sociall
             </div>
             <div className="relative sm:absolute hidden right-[2%] top-[35vh] sm:flex sm:flex-col gap-3 md:gap-4 lg:gap-5">
               {sociallinks?.map(({ icon }) => (
-                <div key={icon} className="h-5 w-6 md:h-6 md:w-7 lg:h-7 lg:w-8 cursor-pointer drop-shadow-lg  transition-all duration-300 hover:scale-110 active:scale-95 active:bg-gray-200 rounded-full">
+                <div
+                  key={icon}
+                  className="h-5 w-6 md:h-6 md:w-7 lg:h-7 lg:w-8 cursor-pointer drop-shadow-lg  transition-all duration-300 hover:scale-110 active:scale-95 active:bg-gray-200 rounded-full"
+                >
                   <img src={icon} alt="smedia/img" />
                 </div>
               ))}

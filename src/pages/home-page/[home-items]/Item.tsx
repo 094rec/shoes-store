@@ -7,6 +7,7 @@ import { FaCartShopping } from 'react-icons/fa6';
 
 export const Item = ({ id, title, text, rank, img, price, color, shadow }: TItem) => {
   const { btnState, addItemBtn, addItemBtnCart } = useCartButton({ id, title, img, price });
+  console.log(color)
   return (
     <>
       <div
