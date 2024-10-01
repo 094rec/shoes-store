@@ -46,7 +46,7 @@ export const Cart = React.memo(() => {
           <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth scroll-hidden items-center w-full h-screen p-3 drop-shadow-sm">
             {items?.map((item) => <CartItem {...item} key={item.id} />)}
           </div>
-          <div className="fixed bottom-0 bg-white flex justify-between 1justify-start 1gap-5 items-center w-full p-3 pl-4 pb-4 drop-shadow-sm">
+          <div className="fixed bottom-0 bg-white flex 1justify-between justify-start gap-5 items-center w-full p-3 pl-4 pb-4 drop-shadow-sm">
             <p className="text-sm lg:text-base text-slate-900">Subtotal:</p>
             <p className="text-sm lg:text-base bg-theme-cart text-white/90 font-light rounded px-1">
               &#36;{total}

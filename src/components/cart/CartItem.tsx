@@ -13,9 +13,10 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
       <div className="flex justify-between items-center w-full">
         <div className="flex justify-between items-center w-[220px] lg:w-[260px] gap-4 pl-2">
           <img
-            onClick={() => {
+            onClick={(e) => {
               nav(`/shoes/${id}`);
               setCartState(false);
+              e.stopPropagation();
             }}
             className="w-[120px] lg:w-[125px] h-auto drop-shadow-2xl transition-all duration-100 hover:scale-105 active:scale-90 cursor-pointer"
             src={img}

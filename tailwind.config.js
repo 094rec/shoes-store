@@ -13,24 +13,24 @@ export default {
     },
   },
   safelist: [
-    { pattern: /from-(gray)-900/ },
-    { pattern: /from-(blue)-600/ },
-    { pattern: /from-(blue|red)-500/ },
+    { pattern: /from-(gray|slate|blue)-900/ },
+    { pattern: /from-(indigo|orange|gray)-700/ },
+    { pattern: /from-(blue|sky|green)-600/ },
+    { pattern: /from-(blue|red|green|orange|yellow|violet|lime|indigo)-500/ },
+    { pattern: /from-yellow-400/ },
 
-    { pattern: /to-(yellow|cyan|rose|blue)-500/ },
-    // {
-    //   pattern:
-    //     /from-(sky|green|red|orange|gray|blue|yellow|indigo|slate|lime|cyan|violet|emerald|rose|amber|black|[#936550])-900/,
-    // },
-    // {
-    //   pattern:
-    //     /to-(indigo|emerald|rose|amber|yellow|cyan|orange|black|blue|lime|violet|red|green|[#936550])-500/,
-    // },
-    // { pattern: /to-(orange|yellow|blue|black|indigo|orange)-900/ },
+    { pattern: /to-orange-800/ },
+    { pattern: /to-(indigo)-700/ },
+    { pattern: /to-(indigo|green)-600/ },
+    { pattern: /to-(yellow|cyan|rose|blue|emerald|amber|lime|yellow|indigo|blue|green)-500/ },
+    { pattern: /to-black/ },
 
-    { pattern: /shadow-(sm|md|lg|xl|2xl)/ },
+    { pattern: /shadow-orange-700/ },
+    { pattern: /shadow-indigo-600/ },
     { pattern: /shadow-(green|blue|rose|orange|yellow|cyan|indigo|black|lime|violet)-500/ },
-    { pattern: /shadow-orange-800/ },
+    { pattern: /shadow-yellow-400/ },
+    { pattern: /shadow-(sm|md|lg|xl|2xl)/ },
+    { pattern: /shadow-black/ },
   ],
 
   plugins: [],
