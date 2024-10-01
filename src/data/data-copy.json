@@ -13,7 +13,7 @@
     ],
     "price": "200",
     "color": "from-sky-600 to-indigo-600",
-    "shadow": "shadow-lg shadow-blue-500"
+    "shadow": "shadow-lg shadow-indigo-600"
   },
   {
     "id": "2",
@@ -52,7 +52,7 @@
     "rank": "4.3",
     "img": "http://193.149.129.105/shoes/product5.png",
     "price": "190",
-    "color": "from-gray-900 to-yellow-500",
+    "color": "from-gray-700 to-yellow-500",
     "shadow": "shadow-lg shadow-yellow-500"
   },
   {
@@ -72,8 +72,8 @@
     "rank": "4.2",
     "img": "http://193.149.129.105/shoes/product1.png",
     "price": "215",
-    "color": "from-yellow-500 to-yellow-500",
-    "shadow": "shadow-lg shadow-yellow-500"
+    "color": "from-yellow-400 to-yellow-500",
+    "shadow": "shadow-lg shadow-yellow-400"
   },
   {
     "id": "8",
@@ -82,8 +82,8 @@
     "rank": "4",
     "img": "http://193.149.129.105/shoes/product9.png",
     "price": "210",
-    "color": "from-[#936550] to-orange-900",
-    "shadow": "shadow-lg shadow-orange-800"
+    "color": "from-orange-700 to-orange-800",
+    "shadow": "shadow-lg shadow-orange-700"
   },
   {
     "id": "9",
@@ -92,8 +92,8 @@
     "rank": "4.0",
     "img": "http://193.149.129.105/shoes/product10.png",
     "price": "225",
-    "color": "from-indigo-700 to-indigo-700",
-    "shadow": "shadow-lg shadow-indigo-500"
+    "color": "from-indigo-500 to-indigo-700",
+    "shadow": "shadow-lg shadow-indigo-600"
   },
   {
     "id": "10",
@@ -102,8 +102,8 @@
     "rank": "4.1",
     "img": "http://193.149.129.105/shoes/product12.png",
     "price": "220",
-    "color": "from-green-600 to-lime-500",
-    "shadow": "shadow-lg shadow-lime-500"
+    "color": "from-lime-500 to-green-500",
+    "shadow": "shadow-lg shadow-green-500"
   },
   {
     "id": "11",

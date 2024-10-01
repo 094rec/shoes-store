@@ -32,7 +32,9 @@ export const SelectParam = ({ param, setParam }: Props) => {
         }}
         className={clsx(
           'h-7 xs:h-8 flex justify-center items-center bg-gradient-to-b px-4 py-2 rounded-lg focus:outline-none',
-          !val ? 'from-white to-gray-100 drop-shadow-lg' : 'from-blue-200 to-blue-300 drop-shadow-sm',
+          !val
+            ? 'from-white to-gray-100 drop-shadow-lg'
+            : 'from-blue-200 to-blue-300 drop-shadow-sm',
         )}
       >
         {options.find((el) => el.value === param)?.icon}
