@@ -16,7 +16,7 @@ export const HeroSingle = ({ shoe }: Props) => {
           <img
             src={shoe.img}
             alt={`${shoe.title}/img`}
-            className="object-contain w-full h-10/12 max-w-lg rounded-xl btn-ah"
+            className="object-contain w-11/12 max-w-lg rounded-xl btn-ah"
           />
         )}
       </div>
