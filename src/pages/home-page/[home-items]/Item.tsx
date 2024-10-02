@@ -1,9 +1,9 @@
-import { FaStar } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useCartButton } from '../../../hooks/useCartButton.ts';
-import { TItem } from '../index.tsx';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
+import { TItem } from '../index.tsx';
+import { useCartButton } from '../../../hooks/index.ts';
 import { FaCartShopping } from 'react-icons/fa6';
+import { FaStar } from 'react-icons/fa';
 
 export const Item = ({ id, title, text, rank, img, price, color, shadow }: TItem) => {
   const { btnState, addItemBtn, addItemBtnCart } = useCartButton({ id, title, img, price });

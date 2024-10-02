@@ -1,9 +1,9 @@
-import { useCartContext } from '../../hooks/useCartContext';
-import { TiArrowBack } from 'react-icons/ti';
+import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/slices/cartSlice';
+import { useCartContext } from '../../hooks';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
-import clsx from 'clsx';
+import { TiArrowBack } from 'react-icons/ti';
 
 export const CartCount = ({ totalQnt: qnt }: { totalQnt: number }) => {
   const { setCartState } = useCartContext();

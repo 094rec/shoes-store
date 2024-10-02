@@ -1,11 +1,10 @@
-import { IoCaretBack } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import { useCartButton } from '../../../hooks/useCartButton';
 import { TItem } from '../../home-page';
+import { IoCaretBack } from 'react-icons/io5';
 
 export const Desc = ({ id, title, text, img, price }: TItem) => {
   const { btnState, addItemBtn } = useCartButton({ id, title, img, price });
-
   const nav = useNavigate();
   return (
     <>

@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSearchContext } from '../../../hooks/useSearchContext';
-import { Clip } from './Clip';
 import clsx from 'clsx';
+import React from 'react';
+import { useSearchContext } from '../../../hooks';
+import { Clip } from './Clip';
 
 type Props = {
   title: string;

@@ -1,13 +1,12 @@
 import React from 'react';
-import { BsBag } from 'react-icons/bs';
-import { SiNike } from 'react-icons/si';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Search } from './Search';
-import { useSearchContext } from '../hooks/useSearchContext';
-import { useCartContext } from '../hooks/useCartContext';
+import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../redux/slices/cartSlice';
-import clsx from 'clsx';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useCartContext, useSearchContext } from '../hooks';
+import { SiNike } from 'react-icons/si';
+import { BsBag } from 'react-icons/bs';
+import { Search } from './Search';
 
 export const Navbar = () => {
   const { totalQnt } = useSelector(selectCart);

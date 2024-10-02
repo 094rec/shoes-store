@@ -1,7 +1,7 @@
-import clsx from 'clsx';
 import React from 'react';
-import { SelectLimit } from './SelectLimit';
+import clsx from 'clsx';
 import { TItem } from '..';
+import { SelectLimit } from './SelectLimit';
 
 type Props = {
   passNum: (val: number) => void;

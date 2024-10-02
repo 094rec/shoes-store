@@ -1,11 +1,11 @@
 import React from 'react';
-import { useSearchContext } from '../hooks/useSearchContext';
-import { IoCloseOutline } from 'react-icons/io5';
 import debounce from 'debounce';
+import { useSearchContext } from '../hooks';
+import { IoCloseOutline } from 'react-icons/io5';
 
 type Props = {
-  tempSearch: string,
-  setTempSearch: (search: string) => void,
+  tempSearch: string;
+  setTempSearch: (search: string) => void;
 };
 
 export const Search = ({ tempSearch, setTempSearch }: Props) => {

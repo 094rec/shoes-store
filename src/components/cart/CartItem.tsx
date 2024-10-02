@@ -1,9 +1,9 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem, delItem, removeItem, TCartItem } from '../../redux/slices/cartSlice';
-import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
-import { useCartContext } from '../../hooks/useCartContext';
-import React from 'react';
+import { useCartContext } from '../../hooks';
+import { RiDeleteBack2Line } from 'react-icons/ri';
 
 export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) => {
   const disp = useDispatch();
@@ -46,7 +46,9 @@ export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) =
           </div>
         </div>
         <div className="flex flex-col items-end">
-          <p className="text-sm lg:text--base font-light text-slate-900">&#36;{qnt * +price}</p>
+          <p className="text-sm lg:text--base font-light text-slate-900">
+            &#36;{qnt * +price}
+          </p>
           <button onClick={() => disp(delItem({ id }))} className="">
             <RiDeleteBack2Line className="size-6 lg:size-7 text-blue-900/70 drop-shadow-md transition-all duration-300 active:scale-90" />
           </button>

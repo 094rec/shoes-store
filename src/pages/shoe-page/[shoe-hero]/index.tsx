@@ -1,6 +1,6 @@
-import { Desc } from './Desc';
-import { Slider } from './Slider';
 import { TItem } from '../../home-page';
+import { Slider } from './Slider';
+import { Desc } from './Desc';
 
 type Props = {
   shoe: TItem;

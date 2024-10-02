@@ -1,10 +1,9 @@
 import React from 'react';
+import clsx from 'clsx';
+import { useOutsideClick, useSearchContext } from '../../../hooks';
 import { AiFillLike } from 'react-icons/ai';
 import { GrMoney } from 'react-icons/gr';
 import { MdAbc } from 'react-icons/md';
-import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import { useSearchContext } from '../../../hooks/useSearchContext';
-import clsx from 'clsx';
 
 type Props = {
   param: string;

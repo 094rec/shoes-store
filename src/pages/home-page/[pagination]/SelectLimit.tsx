@@ -1,7 +1,7 @@
 import React from 'react';
-import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import { TbNumber4Small, TbNumber6Small } from 'react-icons/tb';
 import { TItem } from '..';
+import { useOutsideClick } from '../../../hooks';
+import { TbNumber4Small, TbNumber6Small } from 'react-icons/tb';
 
 type Props = {
   limit: number;

@@ -36,7 +36,9 @@ export const useSetDataToLS = (
       dataAll &&
         localStorage.setItem(
           'data-all',
-          JSON.stringify(dataAll.map((el) => ({ id: el.id, color: el.color, shadow: el.shadow }))),
+          JSON.stringify(
+            dataAll.map((el) => ({ id: el.id, color: el.color, shadow: el.shadow })),
+          ),
         );
     }, [dataAll]);
   }

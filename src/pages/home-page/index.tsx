@@ -1,15 +1,17 @@
+import {
+  useFetchAllShoes,
+  useFetchShoes,
+  useSearchContext,
+  useSetDataToLS,
+} from '../../hooks';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Cart, Hero, Items } from '../../components';
-import { heroapi } from '../../data/data';
-import { useSearchContext } from '../../hooks/useSearchContext';
-import { useSetDataToLS } from '../../hooks/useSetDataToLS';
 import { selectCart } from '../../redux/slices/cartSlice';
-import { useFetchShoes } from '../../hooks/useFetchShoes';
 import { getDataFromLS } from '../../utils/getDataFromLS';
-import { useFetchAllShoes } from '../../hooks/useFetchAllShoes';
-import { Pagination } from './[pagination]';
+import { heroapi } from '../../data/data';
 import { MoonLoader } from 'react-spinners';
+import { Cart } from '../../components';
+import { Hero, Items, Pagination } from '..';
 
 export type TItem = {
   id: string;
@@ -91,7 +93,12 @@ export const HomePage = () => {
           />
         </div>
       ) : (
-        <Items searchVal={searchVal} items={data} param={param} setParam={(val) => setParam(val)} />
+        <Items
+          searchVal={searchVal}
+          items={data}
+          param={param}
+          setParam={(val) => setParam(val)}
+        />
       )}
       {!searchVal && (
         <Pagination

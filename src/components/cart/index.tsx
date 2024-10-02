@@ -1,12 +1,9 @@
 import React from 'react';
-import { CartCount } from './CartCount';
-import { CartEmpty } from './CartEmpty';
-import { CartItem } from './CartItem';
-import { useCartContext } from '../../hooks/useCartContext';
-import { useSelector } from 'react-redux';
-import { useOutsideClick } from '../../hooks/useOutsideClick';
-import { selectCart } from '../../redux/slices/cartSlice';
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
+import { selectCart } from '../../redux/slices/cartSlice';
+import { useCartContext, useOutsideClick } from '../../hooks';
+import { CartCount, CartEmpty, CartItem } from '..';
 
 export const Cart = React.memo(() => {
   const { items, total, totalQnt } = useSelector(selectCart);
@@ -46,7 +43,7 @@ export const Cart = React.memo(() => {
           <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth scroll-hidden items-center w-full h-screen p-3 drop-shadow-sm">
             {items?.map((item) => <CartItem {...item} key={item.id} />)}
           </div>
-          <div className="fixed bottom-0 bg-white flex 1justify-between justify-start gap-5 items-center w-full p-3 pl-4 pb-4 drop-shadow-sm">
+          <div className="fixed bottom-0 bg-white flex justify-between items-center gap-5 w-full p-3 pl-4 pb-4 drop-shadow-sm">
             <p className="text-sm lg:text-base text-slate-900">Subtotal:</p>
             <p className="text-sm lg:text-base bg-theme-cart text-white/90 font-light rounded px-1">
               &#36;{total}

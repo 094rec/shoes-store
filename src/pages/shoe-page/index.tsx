@@ -1,16 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { Cart } from '../../components/index.ts';
 import { useSelector } from 'react-redux';
-import { useSetDataToLS } from '../../hooks/useSetDataToLS.ts';
 import { selectCart } from '../../redux/slices/cartSlice.ts';
-import { useFetchOne } from '../../hooks/useFetchOne.ts';
+import { useFetchOne, useSetDataToLS } from '../../hooks/index.ts';
 import { PulseLoader } from 'react-spinners';
+import { Cart } from '../../components/index.ts';
 import { HeroSingle } from './[shoe-hero]/index.tsx';
 
 type partItem = {
-  id: string,
-  color: string,
-  shadow: string,
+  id: string;
+  color: string;
+  shadow: string;
 };
 
 export const ShoePage = () => {
@@ -42,9 +41,11 @@ export const ShoePage = () => {
             />
           </div>
         ) : (
-            <HeroSingle shoe={shoe} />
+          <HeroSingle shoe={shoe} />
         )}
       </div>
     </>
   );
 };
+
+export default ShoePage;
