@@ -7,6 +7,6 @@ export const getDataFromLS = () => {
   const initLim = storedLim ? +storedLim : 4;
   const initAct = storedPage ? +storedPage : 1;
   const initParam = storedParam ? storedParam : 'title';
-
+  
   return { initPage, initLim, initAct, initParam };
 };

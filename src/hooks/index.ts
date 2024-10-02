@@ -6,3 +6,4 @@ export * from './useFetchShoes';
 export * from './useOutsideClick';
 export * from './useSearchContext';
 export * from './useSetDataToLS';
+export * from './useHandleCartItemsClick';

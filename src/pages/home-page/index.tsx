@@ -73,13 +73,6 @@ export const HomePage = () => {
     };
   }, []);
 
-  // React.useEffect(() => {
-  //   const scrollPosition = localStorage.getItem('scrollPosition');
-  //   if (scrollPosition) {
-  //     window.scrollTo(0, parseInt(scrollPosition, 10));
-  //   }
-  // }, [data, page]);
-
   return (
     <>
       <Cart />

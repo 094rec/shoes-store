@@ -1,23 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { addItem, delItem, removeItem, TCartItem } from '../../redux/slices/cartSlice';
-import { useNavigate } from 'react-router-dom';
-import { useCartContext } from '../../hooks';
+import { TCartItem } from '../../redux/slices/cartSlice';
 import { RiDeleteBack2Line } from 'react-icons/ri';
+import { useHandleCartItemsClick } from '../../hooks';
 
 export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) => {
-  const disp = useDispatch();
-  const nav = useNavigate();
-  const { setCartState } = useCartContext();
+  const { handleIncrease, handleDecrease, handleImg, handleDel } = useHandleCartItemsClick({
+    id,
+    img,
+    price,
+    title,
+    qnt,
+  });
+
   return (
     <>
       <div className="flex justify-between items-center w-full">
         <div className="flex justify-between items-center w-[220px] lg:w-[260px] gap-4 pl-2">
           <img
-            onClick={() => {
-              nav(`/shoes/${id}`);
-              setCartState(false);
-            }}
+            onClick={handleImg}
             className="w-[120px] lg:w-[125px] h-auto drop-shadow-2xl transition-all duration-100 hover:scale-105 active:scale-90 cursor-pointer"
             src={img}
             alt=""
@@ -29,7 +29,7 @@ export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) =
             <div className="flex justify-between items-center gap-3">
               <button
                 className="text-xs lg:text-base bg-theme-cart text-white w-5 h-5 lg:w-6 lg:h-6 rounded-md drop-shadow-sm transition-all duration-300 active:scale-90"
-                onClick={() => disp(removeItem({ id }))}
+                onClick={handleDecrease}
               >
                 {qnt > 1 ? '-' : 'x'}
               </button>
@@ -38,7 +38,7 @@ export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) =
               </p>
               <button
                 className="text-xs lg:text-base bg-theme-cart text-white w-5 h-5 lg:w-6 lg:h-6 rounded-md drop-shadow-sm transition-all duration-300 active:scale-90"
-                onClick={() => disp(addItem({ id, title, img, price, qnt }))}
+                onClick={handleIncrease}
               >
                 +
               </button>
@@ -49,7 +49,7 @@ export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) =
           <p className="text-sm lg:text--base font-light text-slate-900">
             &#36;{qnt * +price}
           </p>
-          <button onClick={() => disp(delItem({ id }))} className="">
+          <button onClick={handleDel}>
             <RiDeleteBack2Line className="size-6 lg:size-7 text-blue-900/70 drop-shadow-md transition-all duration-300 active:scale-90" />
           </button>
         </div>
