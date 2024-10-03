@@ -19,7 +19,7 @@ export type TItem = {
   text: string;
   rank: string;
   img: string;
-  imgs: string[];
+  imgs?: string[];
   price: string;
   color: string;
   shadow: string;

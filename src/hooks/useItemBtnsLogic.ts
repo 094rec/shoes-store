@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCartContext } from './useCartContext';
 import { addItem, selectCart } from '../redux/slices/cartSlice';
-import { toast } from 'react-toastify';
+import { toast } from '../utils/toast';
 
 type CartBtnProps = {
   id: string;
@@ -11,13 +11,7 @@ type CartBtnProps = {
   price: string;
 };
 
-type CartBtnRes = {
-  btnState: boolean;
-  addItemBtn: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  addItemBtnCart?: () => void;
-};
-
-export const useCartButton = ({ id, title, img, price }: CartBtnProps): CartBtnRes => {
+export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
   const disp = useDispatch();
   const { setCartState } = useCartContext();
   const { items } = useSelector(selectCart);
@@ -37,33 +31,23 @@ export const useCartButton = ({ id, title, img, price }: CartBtnProps): CartBtnR
     localStorage.setItem(`btnState-${id}`, JSON.stringify(btnState));
   }, [btnState, id]);
 
-  const addItemBtn = React.useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const addItemBtn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     if (!btnState && id) {
       disp(addItem({ id, title, img, price, qnt: 1 }));
-      toast.success('Item added', {
-        position: 'bottom-right',
-        closeOnClick: true,
-        autoClose: 1000,
-        hideProgressBar: true,
-      });
+      toast('Item added');
     }
     setCartState(true);
     setBtnState(true);
-  }, [id, title, img, price, btnState, setCartState, setBtnState, disp]);
+  };
 
   const addItemBtnCart = React.useCallback(() => {
     setBtnState(true);
     if (!btnState) {
       disp(addItem({ id, title, img, price, qnt: 1 }));
-      toast.success('Item added', {
-        position: 'bottom-right',
-        closeOnClick: true,
-        autoClose: 1000,
-        hideProgressBar: true,
-      });
+      toast('Item added');
     }
-  }, [id, title, img, price, btnState, disp]);
+  }, [id, title, img, price, setBtnState ]);
 
   return { btnState, addItemBtn, addItemBtnCart };
 };

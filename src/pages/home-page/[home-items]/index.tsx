@@ -28,9 +28,14 @@ export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
             >
               {!val ? (
                 <p>Popular Sales</p>
+              ) : (items || []).length > 0 ? (
+                items.length === 9 ? (
+                  <p>Not Found (·•᷄∩•᷅ )</p>
+                ) : (
+                  <p>Found: {items.length}</p>
+                )
               ) : (
-                (items || []).length > 0 ? (
-                items.length === 9 ? <p>Not Found (·•᷄∩•᷅ )</p> : <p>Found: {items.length}</p>):(<p>Not Found (·•᷄∩•᷅ )</p>)
+                <p>Not Found (·•᷄∩•᷅ )</p>
               )}
             </h3>
             {(items || []).length > 0 && <SelectParam param={param} setParam={setParam} />}

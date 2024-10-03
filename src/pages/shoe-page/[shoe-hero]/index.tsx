@@ -10,8 +10,8 @@ export const HeroSingle = ({ shoe }: Props) => {
   return (
     <>
       <div className="relative flex justify-center items-center w-full mb-6">
-        {shoe?.imgs?.length > 0 ? (
-          <Slider {...shoe} />
+        {shoe.imgs && shoe.imgs.length > 0 ? (
+          <Slider imgs={shoe.imgs} />
         ) : (
           <img
             src={shoe.img}

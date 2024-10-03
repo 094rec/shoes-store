@@ -1,10 +1,10 @@
 import React from 'react';
 import { TCartItem } from '../../redux/slices/cartSlice';
 import { RiDeleteBack2Line } from 'react-icons/ri';
-import { useHandleCartItemsClick } from '../../hooks';
+import { useCartItemCallbacks } from '../../hooks';
 
 export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) => {
-  const { handleIncrease, handleDecrease, handleImg, handleDel } = useHandleCartItemsClick({
+  const { handleIncrease, handleDecrease, handleImg, handleDel } = useCartItemCallbacks({
     id,
     img,
     price,
