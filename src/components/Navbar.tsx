@@ -8,16 +8,28 @@ import { SiNike } from 'react-icons/si';
 import { BsBag } from 'react-icons/bs';
 import { Search } from './Search';
 
+const MemoizedSearch = React.memo(Search);
+
 export const Navbar = () => {
-  const { totalQnt } = useSelector(selectCart);
   const loc = useLocation();
+  const nav = useNavigate();
+  const { totalQnt } = useSelector(selectCart);
   const isHomePage = loc.pathname === '/';
   const { setSearchVal } = useSearchContext();
   const { setCartState } = useCartContext();
-  const nav = useNavigate();
-
   const [navState, setNavState] = React.useState(false);
   const [tempSearch, setTempSearch] = React.useState('');
+
+  const MemoHomeBtn = React.memo(({ homeBtn }: { homeBtn: () => void }) => (
+    <button onClick={homeBtn}>
+      <SiNike
+        className={clsx(
+          'opacity-80 size-10 xs:size-11 sm:size-12 ml-2 active:scale-90 active:duration-100 hover:scale-110',
+          navState ? 'text-gray-900/60 transition-all duration-300' : 'text-white/50',
+        )}
+      />
+    </button>
+  ));
 
   React.useEffect(() => {
     const onNavScroll = () => {
@@ -27,31 +39,27 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', onNavScroll);
   }, []);
 
-  const handleHomeClick = () => {
+  const homeBtn = React.useCallback(() => {
     setSearchVal('');
     setTempSearch('');
     nav('/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, [setSearchVal, setTempSearch, nav]);
 
-  const openCartBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setCartState(true);
-  };
+  const openCartBtn = React.useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      setCartState(true);
+    },
+    [setCartState],
+  );
 
   return (
     <div className="fixed left-0 right-0 top-0 py-2 sm:py-1 px-3.5 z-40 text-white backdrop-blur-sm backdrop-filter">
       <div className="flex justify-between items-center">
-        <button onClick={handleHomeClick}>
-          <SiNike
-            className={clsx(
-              'opacity-80 size-10 xs:size-11 sm:size-12 ml-2 active:scale-90 active:duration-100 hover:scale-110',
-              navState ? 'text-gray-900/60 transition-all duration-300' : 'text-white/50',
-            )}
-          />
-        </button>
+        <MemoHomeBtn homeBtn={homeBtn} />
         <div className="relative flex items-center gap-2">
-          {isHomePage && <Search tempSearch={tempSearch} setTempSearch={setTempSearch} />}
+          {isHomePage && <MemoizedSearch tempSearch={tempSearch} setTempSearch={setTempSearch} />}
           <button className="relative" onClick={openCartBtn}>
             <BsBag
               className={clsx(

@@ -47,7 +47,7 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
       disp(addItem({ id, title, img, price, qnt: 1 }));
       toast('Item added');
     }
-  }, [id, title, img, price, setBtnState ]);
+  }, [id, title, img, price, btnState ]);
 
   return { btnState, addItemBtn, addItemBtnCart };
 };

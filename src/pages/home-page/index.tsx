@@ -96,7 +96,7 @@ export const HomePage = () => {
       {!searchVal && (
         <Pagination
           passNum={(n) => setPage(n)}
-          handleClick={(n) => setActive(n)}
+          setActive={(n) => setActive(n)}
           active={active}
           setLimit={(val) => setLimit(val)}
           limit={limit}

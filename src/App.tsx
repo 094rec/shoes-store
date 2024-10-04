@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import {
   Route,
   createBrowserRouter,
@@ -11,7 +11,7 @@ import { store } from './redux/store';
 import { HomePage } from './pages/home-page/index.tsx';
 import { ToastContainer } from 'react-toastify';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// import { ShoePage } from './pages/shoe-page';
+// import ShoePage from './pages/shoe-page/index.tsx';
 const ShoePage = React.lazy(() => import('./pages/shoe-page'));
 
 export type SearchType = {
@@ -30,6 +30,8 @@ export const CartContext = React.createContext<CartType | undefined>(undefined);
 const App = () => {
   const [searchVal, setSearchVal] = React.useState('');
   const [cartState, setCartState] = React.useState(false);
+  const valCart = useMemo(() => ({ cartState, setCartState }), [cartState]);
+
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -53,7 +55,7 @@ const App = () => {
     <>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <CartContext.Provider value={{ cartState, setCartState }}>
+          <CartContext.Provider value={valCart}>
             <SearchContext.Provider value={{ searchVal, setSearchVal }}>
               <Suspense fallback={<div>...loading</div>}>
                 <RouterProvider router={router} />

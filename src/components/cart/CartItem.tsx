@@ -1,9 +1,8 @@
-import React from 'react';
 import { TCartItem } from '../../redux/slices/cartSlice';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useCartItemCallbacks } from '../../hooks';
 
-export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) => {
+export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
   const { handleIncrease, handleDecrease, handleImg, handleDel } = useCartItemCallbacks({
     id,
     img,
@@ -49,11 +48,13 @@ export const CartItem = React.memo(({ id, img, price, title, qnt }: TCartItem) =
           <p className="text-sm lg:text--base font-light text-slate-900">
             &#36;{qnt * +price}
           </p>
-          <button onClick={handleDel}>
+          <button
+          onClick={handleDel}
+          >
             <RiDeleteBack2Line className="size-6 lg:size-7 text-blue-900/70 drop-shadow-md transition-all duration-300 active:scale-90" />
           </button>
         </div>
       </div>
     </>
   );
-});
+};

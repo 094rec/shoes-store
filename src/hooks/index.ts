@@ -7,3 +7,4 @@ export * from './useOutsideClick';
 export * from './useSearchContext';
 export * from './useSetDataToLS';
 export * from './useCartItemCallbacks';
+export * from './useCustomNav';

@@ -1,3 +1,4 @@
+import React from 'react';
 import clsx from 'clsx';
 import { TItem } from '../index.tsx';
 import { SelectParam } from './SelectParam.tsx';
@@ -9,6 +10,8 @@ type Props = {
   param: string;
   setParam: (param: string) => void;
 };
+
+const MemoizedItem = React.memo(Item);
 
 export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
   return (
@@ -43,7 +46,7 @@ export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
 
           {Array.isArray(items) && items?.length > 0 && (
             <div className="grid grid-cols-1 gap-6 items-center justify-items-center xs:grid-cols-2 lg:grid-cols-3">
-              {items?.map((item) => <Item {...item} key={item.id} />)}
+              {items?.map((item) => <MemoizedItem {...item} key={item.id} />)}
             </div>
           )}
         </div>
