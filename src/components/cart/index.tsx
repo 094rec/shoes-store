@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../redux/slices/cartSlice';
+import { selectCart } from '../../store/slices/cartSlice';
 import { useCartContext, useOutsideClick } from '../../hooks';
 import { CartCount, CartEmpty } from '..';
 import { CartItem } from './CartItem';

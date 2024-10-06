@@ -1,4 +1,4 @@
-import { TCartItem } from '../../redux/slices/cartSlice';
+import { TCartItem } from '../../store/slices/cartSlice';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useCartItemCallbacks } from '../../hooks';
 

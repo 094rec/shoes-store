@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../redux/slices/cartSlice.ts';
+import { selectCart } from '../../store/slices/cartSlice.ts';
 import { useFetchOne, useSetDataToLS } from '../../hooks/index.ts';
 import { PulseLoader } from 'react-spinners';
 import { Cart } from '../../components/index.ts';

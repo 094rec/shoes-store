@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCartContext } from './useCartContext';
-import { addItem, selectCart } from '../redux/slices/cartSlice';
+import { addItem, selectCart } from '../store/slices/cartSlice';
 import { toast } from '../utils/toast';
 
 type CartBtnProps = {

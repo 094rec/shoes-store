@@ -8,7 +8,7 @@ import {
   removeItem,
   selectCart,
   TCartItem,
-} from '../redux/slices/cartSlice';
+} from '../store/slices/cartSlice';
 
 export const useCartItemCallbacks = ({ id, title, img, price, qnt }: TCartItem) => {
   const disp = useDispatch();

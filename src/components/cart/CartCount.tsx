@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeAllItems, selectCart } from '../../redux/slices/cartSlice';
+import { removeAllItems, selectCart } from '../../store/slices/cartSlice';
 import { useCartContext } from '../../hooks';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import { TiArrowBack } from 'react-icons/ti';

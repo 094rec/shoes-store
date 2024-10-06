@@ -10,7 +10,7 @@ type Props = {
 
 export const Search = ({ tempSearch, setTempSearch }: Props) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const { searchVal: val, setSearchVal } = useSearchContext();
+  const { searchVal, setSearchVal } = useSearchContext();
 
   React.useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -45,7 +45,7 @@ export const Search = ({ tempSearch, setTempSearch }: Props) => {
         type="text"
         placeholder="Search..."
       />
-      {val && (
+      {searchVal && (
         <IoCloseOutline
           onClick={() => {
             setTempSearch('');

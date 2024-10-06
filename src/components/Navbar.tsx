@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../redux/slices/cartSlice';
+import { selectCart } from '../store/slices/cartSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCartContext, useSearchContext } from '../hooks';
 import { SiNike } from 'react-icons/si';

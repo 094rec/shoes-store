@@ -6,7 +6,7 @@ import {
 } from '../../hooks';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../redux/slices/cartSlice';
+import { selectCart } from '../../store/slices/cartSlice';
 import { getDataFromLS } from '../../utils/getDataFromLS';
 import { heroapi } from '../../data/data';
 import { MoonLoader } from 'react-spinners';

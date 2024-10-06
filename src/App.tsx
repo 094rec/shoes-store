@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from 'react';
+import React, { Suspense } from 'react';
 import {
   Route,
   createBrowserRouter,
@@ -7,40 +7,17 @@ import {
 } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import { store } from './store/index.ts';
 import { HomePage } from './pages/home-page/index.tsx';
 import { ToastContainer } from 'react-toastify';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { CartProvider } from './contexts/cartContext.tsx';
+import { SearchProvider } from './contexts/searchContext.tsx';
+import { queryClient } from './config/queryClient.ts';
 // import ShoePage from './pages/shoe-page/index.tsx';
 const ShoePage = React.lazy(() => import('./pages/shoe-page'));
 
-export type SearchType = {
-  searchVal: string;
-  setSearchVal: React.Dispatch<React.SetStateAction<string>>;
-};
-
-export type CartType = {
-  cartState: boolean;
-  setCartState: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export const SearchContext = React.createContext<SearchType | undefined>(undefined);
-export const CartContext = React.createContext<CartType | undefined>(undefined);
-
 const App = () => {
-  const [searchVal, setSearchVal] = React.useState('');
-  const [cartState, setCartState] = React.useState(false);
-  const valCart = useMemo(() => ({ cartState, setCartState }), [cartState]);
-
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        // refetchOnMount: false,
-        refetchOnWindowFocus: false,
-      },
-    },
-  });
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
@@ -55,14 +32,14 @@ const App = () => {
     <>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <CartContext.Provider value={valCart}>
-            <SearchContext.Provider value={{ searchVal, setSearchVal }}>
+          <CartProvider >
+            <SearchProvider>
               <Suspense fallback={<div>...loading</div>}>
                 <RouterProvider router={router} />
                 <ToastContainer />
               </Suspense>
-            </SearchContext.Provider>
-          </CartContext.Provider>
+            </SearchProvider>
+          </CartProvider>
         </Provider>
       </QueryClientProvider>
     </>

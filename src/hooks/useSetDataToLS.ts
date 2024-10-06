@@ -1,5 +1,5 @@
 import React from 'react';
-import { TCartItem } from '../redux/slices/cartSlice';
+import { TCartItem } from '../store/slices/cartSlice.ts';
 import { TItem } from '../pages/home-page/index.tsx';
 
 export const useSetDataToLS = (
