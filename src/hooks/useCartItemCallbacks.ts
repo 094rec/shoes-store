@@ -37,10 +37,10 @@ export const useCartItemCallbacks = ({ id, title, img, price, qnt }: TCartItem) 
     disp(addItem({ id, title, img, price, qnt }));
   }, [id, title, img, price]);
 
-  const handleDecrease = React.useCallback(() => {
+  const handleDecrease = () => {
     disp(removeItem({ id }));
     setTimeout(() => checkingItems('decr'), 0);
-  }, [id, checkingItems]);
+  };
 
   const handleImg = React.useCallback(() => {
     nav(`/shoes/${id}`);

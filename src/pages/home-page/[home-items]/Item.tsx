@@ -25,14 +25,16 @@ const MemoCartBtn = React.memo(
   ),
 );
 
-const MemoImg = React.memo(({ id, img }: { id: string; img: string }) => (
-  <Link
-    to={`/shoes/${id}`}
-    className="absolute w-1/2 right-0 object-contain cursor-pointer duration-100 active:scale-90"
-  >
-    <img src={img} alt="shoe/img" />
-  </Link>
-));
+const MemoImg = React.memo(
+  ({ id, img, title }: { id: string; img: string; title: string }) => (
+    <Link
+      to={`/shoes/${id}`}
+      className="absolute w-1/2 right-0 object-contain cursor-pointer duration-100 active:scale-90"
+    >
+      <img src={img} alt={title} />
+    </Link>
+  ),
+);
 
 export const Item = ({ id, title, text, rank, img, price, color, shadow }: TItem) => {
   const { btnState, addItemBtn, addItemBtnCart } = useItemBtnsLogic({
@@ -67,7 +69,7 @@ export const Item = ({ id, title, text, rank, img, price, color, shadow }: TItem
           </button>
         </div>
       </div>
-      <MemoImg id={id} img={img} />
+      <MemoImg id={id} img={img} title={title} />
     </div>
   );
 };

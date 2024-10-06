@@ -8,7 +8,7 @@ import { CartItem } from './CartItem';
 
 const MemoizedCartItem = React.memo(CartItem);
 
-export const Cart = React.memo(() => {
+export const Cart = () => {
   const { items, total, totalQnt } = useSelector(selectCart);
   const { cartState: val, setCartState } = useCartContext();
   const cartRef = useOutsideClick(() => setCartState(false));
@@ -38,4 +38,4 @@ export const Cart = React.memo(() => {
       </div>
     </div>
   );
-});
+};

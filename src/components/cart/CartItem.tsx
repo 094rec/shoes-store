@@ -1,6 +1,33 @@
+import React from 'react';
 import { TCartItem } from '../../store/slices/cartSlice';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useCartItemCallbacks } from '../../hooks';
+
+const MemoImg = React.memo(
+  ({ handleImg, img, title }: { handleImg: () => void; img: string; title: string }) => (
+    <img
+      onClick={handleImg}
+      className="w-[120px] lg:w-[125px] h-auto drop-shadow-2xl transition-all duration-100 hover:scale-105 active:scale-90 cursor-pointer"
+      src={img}
+      alt={title}
+    />
+  ),
+);
+
+const MemoDeleteBtn = React.memo(({ handleDel }: { handleDel: () => void }) => (
+  <button onClick={handleDel}>
+    <RiDeleteBack2Line className="size-6 lg:size-7 text-blue-900/70 drop-shadow-md transition-all duration-300 active:scale-90" />
+  </button>
+));
+
+const MemoIncreaseBtn = React.memo(({ handleIncrease }: { handleIncrease: () => void }) => (
+  <button
+    className="text-xs lg:text-base bg-theme-cart text-white w-5 h-5 lg:w-6 lg:h-6 rounded-md drop-shadow-sm transition-all duration-300 active:scale-90"
+    onClick={handleIncrease}
+  >
+    +
+  </button>
+));
 
 export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
   const { handleIncrease, handleDecrease, handleImg, handleDel } = useCartItemCallbacks({
@@ -15,12 +42,7 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
     <>
       <div className="flex justify-between items-center w-full">
         <div className="flex justify-between items-center w-[220px] lg:w-[260px] gap-4 pl-2">
-          <img
-            onClick={handleImg}
-            className="w-[120px] lg:w-[125px] h-auto drop-shadow-2xl transition-all duration-100 hover:scale-105 active:scale-90 cursor-pointer"
-            src={img}
-            alt=""
-          />
+          <MemoImg handleImg={handleImg} img={img} title={title} />
           <div className="flex flex-col">
             <h3 className="text-sm text-slate-900 font-light drop-shadow-base filter lg:text-base">
               {title}
@@ -35,12 +57,7 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
               <p className="text-xs lg:text-base bg-theme-cart flex justify-center items-center text-white w-5 h-5 lg:w-6 lg:h-6 rounded-md">
                 {qnt}
               </p>
-              <button
-                className="text-xs lg:text-base bg-theme-cart text-white w-5 h-5 lg:w-6 lg:h-6 rounded-md drop-shadow-sm transition-all duration-300 active:scale-90"
-                onClick={handleIncrease}
-              >
-                +
-              </button>
+              <MemoIncreaseBtn handleIncrease={handleIncrease} />
             </div>
           </div>
         </div>
@@ -48,11 +65,7 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
           <p className="text-sm lg:text--base font-light text-slate-900">
             &#36;{qnt * +price}
           </p>
-          <button
-          onClick={handleDel}
-          >
-            <RiDeleteBack2Line className="size-6 lg:size-7 text-blue-900/70 drop-shadow-md transition-all duration-300 active:scale-90" />
-          </button>
+          <MemoDeleteBtn handleDel={handleDel} />
         </div>
       </div>
     </>
