@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import React from 'react';
+import clsx from 'clsx';
 import { useSearchContext } from '../../../hooks';
 import { Clip } from './Clip';
 
@@ -17,7 +17,9 @@ type Props = {
   }[];
 };
 
-export const Hero = React.memo(({ title, subtitle, img, btntext, videos, sociallinks }: Props) => {
+const MemoizedClip = React.memo(Clip);
+
+export const Hero = ({ title, subtitle, img, btntext, videos = [], sociallinks = [] }: Props) => {
   const { searchVal: val } = useSearchContext();
   return (
     <>
@@ -49,7 +51,7 @@ export const Hero = React.memo(({ title, subtitle, img, btntext, videos, sociall
               className="h-[19vh] xx:h-[24vh] xs:h-[28vh] sm:h-[31vh] md:h-[35vh] lg:h-[38vh] transitions-theme -rotate-[24deg] hover:-rotate-[16deg] {object-fill}"
             />
             <div className="sm:absolute left-[2%] top-[35vh] flex sm:flex-col gap-2 xx:gap-3 xs:gap-4 sm:gap-3 md:gap-4">
-              {videos?.map((video) => <Clip key={video.imgsrc} {...video} />)}
+              {videos?.map((video) => <MemoizedClip key={video.imgsrc} {...video} />)}
             </div>
             <div className="relative sm:absolute hidden right-[2%] top-[35vh] sm:flex sm:flex-col gap-3 md:gap-4 lg:gap-5">
               {sociallinks?.map(({ icon }) => (
@@ -66,4 +68,4 @@ export const Hero = React.memo(({ title, subtitle, img, btntext, videos, sociall
       </div>
     </>
   );
-});
+};
