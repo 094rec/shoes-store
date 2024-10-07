@@ -13,14 +13,14 @@ type Props = {
 
 const MemoizedItem = React.memo(Item);
 
-export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
+export const Items = ({ items = [], searchVal: val, param, setParam }: Props) => {
   const hasItems = (items || []).length > 0;
   return (
     <>
       <div
         className={`${val && 'relative flex bg-gradient-to-b from-blue-200 to-sky-100 h-screen'}`}
       >
-        <div className={`nike-container w-10/12 xs:w-11/12 ${val && 'mt-16'}`}>
+        <div className={`w-10/12 mx-auto xs:w-11/12 ${val && 'mt-16'}`}>
           <div className="flex justify-between items-center mb-4">
             <h3
               className={clsx(
@@ -30,17 +30,9 @@ export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
                   : 'text-slate-900/80 text-xl xx:text-2xl sm:text-3xl',
               )}
             >
-              {!val ? (
-                <p>Popular Sales</p>
-              ) : hasItems ? (
-                items.length === 9 ? (
-                  <p>Not Found (·•᷄∩•᷅ )</p>
-                ) : (
-                  <p>Found: {items.length}</p>
-                )
-              ) : (
-                <p>Not Found (·•᷄∩•᷅ )</p>
-              )}
+              {!val && <p>Popular Sales</p>}
+              {val && hasItems && <p>Found: {items.length}</p>}
+              {val && !hasItems && <p>Not Found (·•᷄∩•᷅ )</p>}
             </h3>
             {hasItems && <SelectParam param={param} setParam={setParam} />}
           </div>

@@ -11,11 +11,11 @@ type Props = {
 
 export const SelectLimit = ({ limit, setLimit, data }: Props) => {
 
-  const options = [
+  const options = React.useMemo(() => [
     { value: 4, icon: <TbNumber4Small className="size-6 -m-1 text-black/50" /> },
     { value: 6, icon: <TbNumber6Small className="size-6 -m-1 text-black/50" /> },
     { value: data?.length, icon: <span className="text-xs px-0.5 text-black/60 font-semibold">{data?.length}</span> },
-  ];
+  ], [data?.length]);
 
   const [dropState, setDropState] = React.useState(false);
   const limitRef = useOutsideClick(() => setDropState(false));
@@ -37,7 +37,7 @@ export const SelectLimit = ({ limit, setLimit, data }: Props) => {
           ref={limitRef}
           className="absolute mb-[44px] xs:mb-[46px] sm:mb-[56px] w-[32px] sm:w-[37px] rounded-xl shadow-lg bg-white"
         >
-          <ul className="">
+          <ul>
             {options.map((option) => (
               <li
                 key={option.value}
