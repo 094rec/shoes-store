@@ -14,6 +14,7 @@ type Props = {
 const MemoizedItem = React.memo(Item);
 
 export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
+  const hasItems = (items || []).length > 0;
   return (
     <>
       <div
@@ -31,7 +32,7 @@ export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
             >
               {!val ? (
                 <p>Popular Sales</p>
-              ) : (items || []).length > 0 ? (
+              ) : hasItems ? (
                 items.length === 9 ? (
                   <p>Not Found (·•᷄∩•᷅ )</p>
                 ) : (
@@ -41,10 +42,10 @@ export const Items = ({ items, searchVal: val, param, setParam }: Props) => {
                 <p>Not Found (·•᷄∩•᷅ )</p>
               )}
             </h3>
-            {(items || []).length > 0 && <SelectParam param={param} setParam={setParam} />}
+            {hasItems && <SelectParam param={param} setParam={setParam} />}
           </div>
 
-          {Array.isArray(items) && items?.length > 0 && (
+          {hasItems && (
             <div className="grid grid-cols-1 gap-6 items-center justify-items-center xs:grid-cols-2 lg:grid-cols-3">
               {items?.map((item) => <MemoizedItem {...item} key={item.id} />)}
             </div>

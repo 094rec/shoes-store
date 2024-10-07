@@ -13,11 +13,11 @@ type Props = {
 export const SelectParam = ({ param, setParam }: Props) => {
   const { searchVal: val } = useSearchContext();
 
-  const options = [
+  const options = React.useMemo(() => [
     { value: 'title', icon: <MdAbc className="size-7 -m-1 text-black/90" /> },
     { value: 'price', icon: <GrMoney className="size-4 text-black/90" /> },
     { value: 'rank', icon: <AiFillLike className="size-4 sm:size-5 text-black/90" /> },
-  ];
+  ], []);
 
   const [dropState, setDropState] = React.useState(false);
   const paramRef = useOutsideClick(() => setDropState(false));

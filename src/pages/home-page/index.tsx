@@ -33,12 +33,13 @@ export const HomePage = () => {
   const [active, setActive] = React.useState(initAct);
   const [param, setParam] = React.useState(initParam);
   const isMounted = React.useRef(false);
-
+  
   const { data, isLoading, error } = useFetchShoes(
     ['shoes', page, limit, searchVal, param],
     `https://66efa6eff2a8bce81be3ba6e.mockapi.io/items?${searchVal ? '' : `l=${limit}&p=${page}&`}${searchVal ? `title=${searchVal}&` : ''}sortBy=${param}${param === 'rank' ? '&order=desc' : ''}`,
   );
   if (error) return null;
+  const hasItems = (data || []).length > 0;
 
   const { data: dataAll, error: errorAll } = useFetchAllShoes();
   if (errorAll) return null;
@@ -93,7 +94,12 @@ export const HomePage = () => {
           setParam={(val) => setParam(val)}
         />
       )}
-      {!searchVal && (
+      {!hasItems && !isLoading && (
+        <p className="w-11/12 m-auto font-medium filter drop-shadow-md text-center xx:text-left text-slate-900/90 text-xl xx:text-2xl sm:text-3xl">
+          Shoes not found. Try later <span className="whitespace-nowrap">(·•᷄∩•᷅ )</span>
+        </p>
+      )}
+      {hasItems && !searchVal && (
         <Pagination
           passNum={(n) => setPage(n)}
           setActive={(n) => setActive(n)}
