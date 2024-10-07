@@ -10,6 +10,7 @@ export const useFetchOne = (id: string) => {
       return await res.json();
     },
     staleTime: 1000 * 60 * 5,
+    retry: 3,
   });
 
   return { data: data || ({} as TItem), isLoading, error };

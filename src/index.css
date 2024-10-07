@@ -77,11 +77,11 @@
   }
 
   .btn-a {
-    @apply transition-all duration-100 active:scale-90 cursor-pointer;
+    @apply transition-all duration-100 active:scale-90;
   }
 
   .btn-ah {
-    @apply transition-all duration-100 active:scale-90 hover:scale-105 cursor-pointer;
+    @apply transition-all duration-100 active:scale-90 hover:scale-105;
   }
 
 }

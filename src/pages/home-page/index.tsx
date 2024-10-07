@@ -1,6 +1,6 @@
 import {
   useFetchAllShoes,
-  useFetchShoes,
+  useFetchFilteredShoes,
   useSearchContext,
   useSetDataToLS,
 } from '../../hooks';
@@ -33,16 +33,14 @@ export const HomePage = () => {
   const [active, setActive] = React.useState(initAct);
   const [param, setParam] = React.useState(initParam);
   const isMounted = React.useRef(false);
-  
-  const { data, isLoading, error } = useFetchShoes(
+
+  const { data, isLoading, error } = useFetchFilteredShoes(
     ['shoes', page, limit, searchVal, param],
     `https://66efa6eff2a8bce81be3ba6e.mockapi.io/items?${searchVal ? '' : `l=${limit}&p=${page}&`}${searchVal ? `title=${searchVal}&` : ''}sortBy=${param}${param === 'rank' ? '&order=desc' : ''}`,
   );
-  if (error) return null;
   const hasItems = (data || []).length > 0;
 
   const { data: dataAll, error: errorAll } = useFetchAllShoes();
-  if (errorAll) return null;
 
   const { items } = useSelector(selectCart);
   useSetDataToLS(items, page, limit, dataAll, param);
@@ -76,6 +74,8 @@ export const HomePage = () => {
 
   return (
     <>
+      {error && null}
+      {errorAll && null}
       <Cart />
       {!searchVal && <Hero {...heroapi} />}
       {isLoading ? (
@@ -95,8 +95,9 @@ export const HomePage = () => {
         />
       )}
       {!hasItems && !isLoading && (
-        <p className="w-11/12 m-auto font-medium filter drop-shadow-md text-center xx:text-left text-slate-900/90 text-xl xx:text-2xl sm:text-3xl">
-          Shoes not found. Try later <span className="whitespace-nowrap">(·•᷄∩•᷅ )</span>
+        <p className="w-11/12 m-auto font-medium filter drop-shadow-md text-center xx:text-left text-slate-900/90 text-lg xx:text-xl sm:text-xl">
+          Shoes not found. Please try to reload App
+          <span className="whitespace-nowrap">(·•᷄∩•᷅ )</span>
         </p>
       )}
       {hasItems && !searchVal && (
