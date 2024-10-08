@@ -27,11 +27,11 @@ export type TItem = {
 
 export const HomePage = () => {
   const { initPage, initAct, initLim, initParam } = getDataFromLS();
-  const { searchVal } = useSearchContext();
   const [page, setPage] = React.useState(initPage);
   const [limit, setLimit] = React.useState(initLim);
   const [active, setActive] = React.useState(initAct);
   const [param, setParam] = React.useState(initParam);
+  const { searchVal } = useSearchContext();
   const isMounted = React.useRef(false);
 
   const { data, isLoading, error } = useFetchFilteredShoes(
@@ -41,6 +41,16 @@ export const HomePage = () => {
   const hasItems = (data || []).length > 0;
 
   const { data: dataAll, error: errorAll } = useFetchAllShoes();
+
+  React.useEffect(() => {
+    errorAll && setLimit(20);
+    return () => {
+      if (errorAll) {
+        localStorage.setItem('pagLimit', '4');
+        localStorage.setItem('pagPage', '1');
+      }
+    };
+  }, [errorAll]);
 
   const { items } = useSelector(selectCart);
   useSetDataToLS(items, page, limit, dataAll, param);
@@ -52,25 +62,6 @@ export const HomePage = () => {
     }
     isMounted.current = true;
   }, [limit]);
-
-  // const filteredSales = {
-  //   ...popularsales,
-  //   items: popularsales.items.filter((obj) => obj.title.toLowerCase().includes(val.toLowerCase())),
-  // };
-
-  React.useEffect(() => {
-    const saveScrollPosition = () => {
-      if (window.scrollY > 0 && window.scrollY > +localStorage.getItem('scrollPosition')!) {
-        localStorage.setItem('scrollPosition', window.scrollY.toString());
-      }
-    };
-    // window.addEventListener('beforeunload', saveScrollPosition);
-    window.addEventListener('scroll', saveScrollPosition);
-    return () => {
-      // window.removeEventListener('beforeunload', saveScrollPosition);
-      window.removeEventListener('scroll', saveScrollPosition);
-    };
-  }, []);
 
   return (
     <>
@@ -95,12 +86,12 @@ export const HomePage = () => {
         />
       )}
       {!hasItems && !isLoading && (
-        <p className="w-11/12 m-auto font-medium filter drop-shadow-md text-center xx:text-left text-slate-900/90 text-lg xx:text-xl sm:text-xl">
-          Shoes not found. Please try to reload App
+        <p className="w-10/12 m-auto font-medium filter drop-shadow-md text-center text-red-900/90 text-lg xx:text-xl md:text-2xl -mt-8 mb-10">
+          Shoes not found. Please try to reload an App
           <span className="whitespace-nowrap">(·•᷄∩•᷅ )</span>
         </p>
       )}
-      {hasItems && !searchVal && (
+      {hasItems && !searchVal && !errorAll && (
         <Pagination
           passNum={(n) => setPage(n)}
           setActive={(n) => setActive(n)}

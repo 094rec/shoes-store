@@ -18,7 +18,7 @@ export const Items = ({ items = [], searchVal: val, param, setParam }: Props) =>
   return (
     <>
       <div
-        className={`${val && 'relative flex bg-gradient-to-b from-blue-200 to-sky-100 h-screen'}`}
+        className={`${val && 'relative flex bg-gradient-to-b from-blue-200 to-sky-100 h-screen'} mb-8`}
       >
         <div className={`w-10/12 mx-auto xs:w-11/12 ${val && 'mt-16'}`}>
           <div className="flex justify-between items-center mb-4">
@@ -30,7 +30,7 @@ export const Items = ({ items = [], searchVal: val, param, setParam }: Props) =>
                   : 'text-slate-900/80 text-xl xx:text-2xl sm:text-3xl',
               )}
             >
-              {!val && <p>Popular Sales</p>}
+              {!val && hasItems && <p>Popular Sales</p>}
               {val && hasItems && <p>Found: {items.length}</p>}
               {val && !hasItems && <p>Not Found (·•᷄∩•᷅ )</p>}
             </h3>

@@ -43,10 +43,8 @@ export const Pagination = ({ passNum, setActive, active, setLimit, limit, data }
           <button
             disabled={active === nums.length}
             onClick={() => {
-              if (active < nums.length) {
-                passNum(active + 1);
-                setActive(active + 1);
-              }
+              passNum(active + 1);
+              setActive(active + 1);
             }}
             className={clsx(
               'ml-1 h-6 w-6 xx:h-7 xx:w-7 sm:h-8 sm:w-8 rounded font-semibold text-sm flex items-center justify-center drop-shadow-xl cursor-pointer',

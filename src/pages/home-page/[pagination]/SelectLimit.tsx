@@ -49,6 +49,7 @@ export const SelectLimit = ({ limit, setLimit, data }: Props) => {
               <li
                 key={option.value}
                 onClick={() => {
+                  console.log(option.value); //
                   setDropState(false);
                   setLimit(option.value);
                 }}

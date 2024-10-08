@@ -35,9 +35,9 @@ export const useSetDataToLS = (
     React.useEffect(() => {
       dataAll &&
         localStorage.setItem(
-          'data-all',
+          'data-colors',
           JSON.stringify(
-            dataAll.map((el) => ({ id: el.id, color: el.color, shadow: el.shadow })),
+            dataAll.map((el) => ({ id: el.id, color: el.color })),
           ),
         );
     }, [dataAll]);
