@@ -3,25 +3,25 @@ import { Slider } from './Slider';
 import { Desc } from './Desc';
 
 type Props = {
-  shoe: TItem;
+  item: TItem;
 };
 
-export const HeroSingle = ({ shoe }: Props) => {
+export const HeroSingle = ({ item}: Props) => {
   return (
     <>
       <div className="relative flex justify-center items-center w-full mb-6">
-        {shoe.imgs && shoe.imgs.length > 0 ? (
-          <Slider imgs={shoe.imgs} />
+        {item.imgs && item.imgs.length > 0 ? (
+          <Slider imgs={item.imgs} />
         ) : (
           <img
-            src={shoe.img}
-            alt={`${shoe.title}/img`}
+            src={item.img}
+            alt={`${item.title}/img`}
             className="object-contain w-11/12 max-w-lg rounded-xl btn-ah"
           />
         )}
       </div>
       <div className="flex justify-center items-center xs:flex-row ">
-        <Desc {...shoe} />
+        <Desc {...item} />
       </div>
     </>
   );

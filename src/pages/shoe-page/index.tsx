@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice.ts';
 import { useFetchOne, useSetDataToLS } from '../../hooks/index.ts';
+import { getDataFromLS } from '../../utils/getDataFromLS.ts';
 import { PulseLoader } from 'react-spinners';
 import { Cart } from '../../components/index.ts';
 import { HeroSingle } from './[shoe-hero]/index.tsx';
@@ -15,12 +16,9 @@ export const ShoePage = () => {
   const { id } = useParams();
   if (!id) return null;
 
-  const data = localStorage.getItem('data-all');
-  const itemsAll = data ? JSON.parse(data) : [];
-  const item = itemsAll.find((el: partItem) => el.id === id);
-  const { data: shoe, isLoading, error } = useFetchOne(id);
-  if (error) return null; ///
-  if (!shoe) return null;
+  const { initCol } = getDataFromLS();
+  const { color } = initCol.find((el: partItem) => el.id === id) || {};
+  const { data, isLoading, error } = useFetchOne(id);
 
   const { items } = useSelector(selectCart);
   useSetDataToLS(items);
@@ -29,7 +27,7 @@ export const ShoePage = () => {
     <>
       <Cart />
       <div
-        className={`relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-b ${item?.color || 'from-blue-500 to-blue-400'} p-6`}
+        className={`relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-b ${color || 'from-blue-500 to-blue-400'} p-6`}
       >
         {isLoading ? (
           <div className="opacity-25">
@@ -40,7 +38,16 @@ export const ShoePage = () => {
             />
           </div>
         ) : (
-          <HeroSingle shoe={shoe} />
+          <>
+            {!error ? (
+              <HeroSingle item={data} />
+            ) : (
+              <p className="w-10/12 m-auto font-medium filter drop-shadow-md text-center text-white/80 text-lg xx:text-xl sm:text-2xl">
+                Shoe not found. Please try to reload the Page
+                <span className="whitespace-nowrap">(·•᷄∩•᷅ )</span>
+              </p>
+            )}
+          </>
         )}
       </div>
     </>
