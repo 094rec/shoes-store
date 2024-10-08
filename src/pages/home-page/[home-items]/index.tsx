@@ -31,8 +31,11 @@ export const Items = ({ items = [], searchVal: val, param, setParam }: Props) =>
               )}
             >
               {!val && hasItems && <p>Popular Sales</p>}
-              {val && hasItems && <p>Found: {items.length}</p>}
-              {val && !hasItems && <p>Not Found (·•᷄∩•᷅ )</p>}
+              {val && (
+                <p>
+                  Found: {items.length} {!hasItems && <span>(·•᷄∩•᷅ )</span>}
+                </p>
+              )}
             </h3>
             {hasItems && <SelectParam param={param} setParam={setParam} />}
           </div>

@@ -1,22 +1,26 @@
+import React from 'react';
 import { TItem } from '../../home-page';
-import { Slider } from './Slider';
-import { Desc } from './Desc';
+import { Desc, Slider } from '../..';
 
 type Props = {
   item: TItem;
 };
 
-export const HeroSingle = ({ item}: Props) => {
+const MemoizedSlider = React.memo(Slider);
+
+export const HeroSingle = ({ item }: Props) => {
+  const { img, title, imgs } = item;
   return (
     <>
       <div className="relative flex justify-center items-center w-full mb-6">
-        {item.imgs && item.imgs.length > 0 ? (
-          <Slider imgs={item.imgs} />
+        {imgs?.length ? (
+          <MemoizedSlider imgs={imgs} />
         ) : (
           <img
-            src={item.img}
-            alt={`${item.title}/img`}
+            src={img}
+            alt={`${title}/img`}
             className="object-contain w-11/12 max-w-lg rounded-xl btn-ah"
+            loading="lazy"
           />
         )}
       </div>

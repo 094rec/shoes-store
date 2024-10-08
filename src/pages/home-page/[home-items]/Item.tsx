@@ -6,7 +6,7 @@ import { useItemBtnsLogic } from '../../../hooks/index.ts';
 import { FaCartShopping } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
 
-const MemoRank = React.memo(({ rank }: { rank: string }) => (
+const MemoRank = React.memo(({ rank }: { rank: number }) => (
   <div className="flex items-center gap-0.5">
     <FaStar className="text-white/70 drop-shadow-lg size-3" />
     <p className="text-white/70 text-sm">{rank}</p>
@@ -31,7 +31,7 @@ const MemoImg = React.memo(
       to={`/shoes/${id}`}
       className="absolute w-1/2 right-0 object-contain cursor-pointer duration-100 active:scale-90"
     >
-      <img src={img} alt={title} />
+      <img src={img} alt={title} loading="lazy" />
     </Link>
   ),
 );

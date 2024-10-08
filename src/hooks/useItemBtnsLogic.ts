@@ -8,7 +8,7 @@ type CartBtnProps = {
   id: string;
   title: string;
   img: string;
-  price: string;
+  price: number;
 };
 
 export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {

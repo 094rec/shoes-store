@@ -17,10 +17,10 @@ export type TItem = {
   id: string;
   title: string;
   text: string;
-  rank: string;
+  rank: number;
   img: string;
   imgs?: string[];
-  price: string;
+  price: number;
   color: string;
   shadow: string;
 };
@@ -39,7 +39,7 @@ export const HomePage = () => {
     `https://66efa6eff2a8bce81be3ba6e.mockapi.io/items?${searchVal ? '' : `l=${limit}&p=${page}&`}${searchVal ? `title=${searchVal}&` : ''}sortBy=${param}${param === 'rank' ? '&order=desc' : ''}`,
   );
   const hasItems = (data || []).length > 0;
-
+  
   const { data: dataAll, error: errorAll } = useFetchAllShoes();
 
   React.useEffect(() => {

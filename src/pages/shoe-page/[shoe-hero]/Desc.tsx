@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useItemBtnsLogic } from '../../../hooks/useItemBtnsLogic';
-import { TItem } from '../../home-page';
+import { useItemBtnsLogic } from '../../../hooks';
 import { IoCaretBack } from 'react-icons/io5';
+import { TItem } from '../../home-page';
 
 export const Desc = ({ id, title, text, img, price }: TItem) => {
   const { btnState, addItemBtn } = useItemBtnsLogic({ id, title, img, price });
@@ -28,7 +28,7 @@ export const Desc = ({ id, title, text, img, price }: TItem) => {
             </p>
             <div className="flex justify-center">
               <button
-                onClick={(e) => addItemBtn(e)}
+                onClick={addItemBtn}
                 className="btn-theme opacity-80 text-sm p-0.5 px-2 xs:py-0.5 bg-white/60 text-slate-900 transition-all duration-300 hover:scale-105 active:scale-90"
               >
                 {!btnState ? 'Buy now' : 'Go cart'}

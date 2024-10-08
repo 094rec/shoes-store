@@ -42,7 +42,7 @@ export const SelectLimit = ({ limit, setLimit, data }: Props) => {
       {dropState && (
         <div
           ref={limitRef}
-          className="absolute mb-[44px] xs:mb-[46px] sm:mb-[56px] w-[32px] sm:w-[37px] rounded-xl shadow-lg bg-white"
+          className="absolute mb-[43px] xs:mb-[46px] sm:mb-[56px] w-[32px] sm:w-[37px] rounded-xl shadow-lg bg-white"
         >
           <ul>
             {options.map((option) => (

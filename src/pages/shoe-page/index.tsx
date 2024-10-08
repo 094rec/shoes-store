@@ -14,7 +14,7 @@ type partItem = {
 
 export const ShoePage = () => {
   const { id } = useParams();
-  if (!id) return null;
+  if (!id) return <p>Invalid id</p>;
 
   const { initCol } = getDataFromLS();
   const { color } = initCol.find((el: partItem) => el.id === id) || {};

@@ -6,7 +6,7 @@ export type TCartItem = {
   id: string;
   title: string;
   img: string;
-  price: string;
+  price: number;
   qnt: number;
 };
 

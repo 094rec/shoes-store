@@ -29,7 +29,7 @@ export const Cart = () => {
         <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth scroll-hidden items-center w-full h-screen p-3 drop-shadow-sm">
           {items?.map((item) => <MemoizedCartItem {...item} key={item.id} />)}
         </div>
-        <div className="fixed bottom-0 bg-white flex justify-between items-center gap-5 w-full p-3 pl-4 pb-4 drop-shadow-sm overflow-x-hidden">
+        <div className="fixed1 sticky bottom-0 bg-white flex justify-between items-center gap-5 w-full p-3 pl-4 pb-4 drop-shadow-sm overflow-x-hidden">
           <p className="text-sm lg:text-base text-slate-900">Subtotal:</p>
           <p className="text-sm lg:text-base bg-theme-cart text-white/90 font-light rounded px-1">
             &#36;{total}
