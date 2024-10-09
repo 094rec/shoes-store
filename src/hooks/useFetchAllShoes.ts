@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { TItem } from '../pages/home-page/index.tsx';
+import { TItem } from '../pages/home-page';
 
 export const useFetchAllShoes = () => {
   const { data, isLoading, error } = useQuery<TItem[]>({

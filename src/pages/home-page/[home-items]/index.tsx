@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
-import { TItem } from '../index.tsx';
-import { SelectParam } from './SelectParam.tsx';
-import { Item } from './Item.tsx';
+import { TItem } from '..';
+import { SelectParam } from './SelectParam';
+import { Item } from './Item';
 
 type Props = {
   items: TItem[];

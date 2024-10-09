@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getCartDataFromLS } from '../../utils/getCartDataFromLS';
+import { getCartDataFromLS } from '../../utils';
 import { RootState } from '..';
 
 export type TCartItem = {
@@ -57,8 +57,12 @@ export const cartSlice = createSlice({
   },
 });
 
-export const selectById = (state: RootState, id: string) => {
+export const selById = (id: string) => (state: RootState) => {
   return state.cart.items.find((el) => el.id === id);
+};
+
+export const leftOne = (id: string) => (state: RootState) => {
+  return (state.cart.items.filter((el) => el.id !== id)).length === 0;
 };
 
 export const selectCart = (state: RootState) => state.cart;
