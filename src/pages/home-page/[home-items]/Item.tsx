@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import React from 'react';
-import { TItem } from '../index.tsx';
+import { TItem } from '..';
 import { Link } from 'react-router-dom';
-import { useItemBtnsLogic } from '../../../hooks/index.ts';
+import { useItemBtnsLogic } from '../../../hooks';
 import { FaCartShopping } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
 

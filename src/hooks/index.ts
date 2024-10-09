@@ -8,3 +8,4 @@ export * from './useSearchContext';
 export * from './useSetDataToLS';
 export * from './useCartItemCallbacks';
 export * from './useCustomNav';
+export * from './useReduxFn';

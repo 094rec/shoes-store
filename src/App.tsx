@@ -7,13 +7,13 @@ import {
 } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { Provider } from 'react-redux';
-import { store } from './store/index.ts';
-import { HomePage } from './pages/home-page/index.tsx';
+import { store } from './store/index';
+import { HomePage } from './pages/home-page';
 import { ToastContainer } from 'react-toastify';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { CartProvider } from './contexts/cartContext.tsx';
-import { SearchProvider } from './contexts/searchContext.tsx';
-import { queryClient } from './config/queryClient.ts';
+import { CartProvider } from './contexts/CartContext';
+import { SearchProvider } from './contexts/SearchContext';
+import { queryClient } from './config/queryClient';
 // import ShoePage from './pages/shoe-page/index.tsx';
 const ShoePage = React.lazy(() => import('./pages/shoe-page'));
 

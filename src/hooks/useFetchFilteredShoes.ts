@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { request } from '../utils/api.ts';
-import { TItem } from '../pages/home-page/index.tsx';
+import { TItem } from '../pages/home-page';
+import { request } from '../utils';
 
 const getData = async (url: string) => {
   return await request(url);

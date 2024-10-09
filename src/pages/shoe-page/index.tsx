@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../store/slices/cartSlice.ts';
-import { useFetchOne, useSetDataToLS } from '../../hooks/index.ts';
-import { getDataFromLS } from '../../utils/getDataFromLS.ts';
+import { selectCart } from '../../store/slices/cartSlice';
+import { useFetchOne, useSetDataToLS } from '../../hooks';
+import { getDataFromLS } from '../../utils';
 import { PulseLoader } from 'react-spinners';
-import { Cart } from '../../components/index.ts';
-import { HeroSingle } from './[shoe-hero]/index.tsx';
+import { Cart } from '../../components';
+import { HeroSingle } from './[shoe-hero]';
 
 export type partItem = {
   id: string;

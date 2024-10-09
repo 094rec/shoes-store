@@ -1,6 +1,6 @@
 import React from 'react';
-import { TCartItem } from '../store/slices/cartSlice.ts';
-import { TItem } from '../pages/home-page/index.tsx';
+import { TCartItem } from '../store/slices/cartSlice';
+import { TItem } from '../pages/home-page';
 
 export const useSetDataToLS = ({
   items,

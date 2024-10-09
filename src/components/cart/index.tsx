@@ -10,21 +10,21 @@ const MemoizedCartItem = React.memo(CartItem);
 
 export const Cart = () => {
   const { items, total, totalQnt } = useSelector(selectCart);
-  const { cartState: val, setCartState } = useCartContext();
+  const { cartState, setCartState } = useCartContext();
   const cartRef = useOutsideClick(() => setCartState(false));
 
   return (
     <div
       className={clsx(
         'fixed top-0 left-0 right-0 bottom-0 blur-effect-theme h-full w-full {opacity-100} transition-all duration-300',
-        val ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-8',
+        cartState ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-8',
       )}
     >
       <div
         ref={cartRef}
         className="absolute blur-effect-theme h-screen max-w-[20rem] xx:max-w-[22rem] xs:max-w-[26rem] sm:max-w-[30rem] opacity-100 right-0 w-screen transition-all"
       >
-        <CartCount totalQnt={totalQnt} />
+        <CartCount totalQnt={totalQnt} items={items}/>
         {items.length < 1 && <CartEmpty />}
         <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth scroll-hidden items-center w-full h-screen p-3 drop-shadow-sm">
           {items?.map((item) => <MemoizedCartItem {...item} key={item.id} />)}

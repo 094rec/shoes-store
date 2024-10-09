@@ -1,6 +1,7 @@
 import React from 'react';
 import { TItem } from '../../home-page';
-import { Desc, Slider } from '../..';
+import { Slider } from './Slider';
+import { Desc } from './Desc';
 
 type Props = {
   item: TItem;
