@@ -1,8 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useCartContext } from './useCartContext';
-import { addItem, selectCart } from '../store/slices/cartSlice';
+import { addItem } from '../store/slices/cartSlice';
 import { toast } from '../utils/toast';
+import { selCartItemById } from '../utils/selCartItemById';
+import { useSetDataToLS } from './useSetDataToLS';
+import { getDataFromLS } from '../utils/getDataFromLS';
 
 type CartBtnProps = {
   id: string;
@@ -14,32 +17,28 @@ type CartBtnProps = {
 export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
   const disp = useDispatch();
   const { setCartState } = useCartContext();
-  const { items } = useSelector(selectCart);
-
-  const [btnState, setBtnState] = React.useState(() => {
-    const savedState = localStorage.getItem(`btnState-${id}`);
-    return savedState ? JSON.parse(savedState) : false;
-  });
-
-  const curItem = React.useMemo(() => items.find((el) => el.id === id), [items, id]);
+  const { item } = selCartItemById(id);
+  const { initSt } = getDataFromLS(id);
+  const [btnState, setBtnState] = React.useState(initSt);
 
   React.useEffect(() => {
-    if (!curItem) setBtnState(false);
-  }, [curItem]);
+    if (!item) setBtnState(false);
+  }, [item]);
 
-  React.useEffect(() => {
-    localStorage.setItem(`btnState-${id}`, JSON.stringify(btnState));
-  }, [btnState, id]);
+  useSetDataToLS({ btnState, id });
 
-  const addItemBtn = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.stopPropagation();
-    if (!btnState && id) {
-      disp(addItem({ id, title, img, price, qnt: 1 }));
-      toast('Item added');
-    }
-    setCartState(true);
-    setBtnState(true);
-  };
+  const addItemBtn = React.useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.stopPropagation();
+      if (!btnState && id) {
+        disp(addItem({ id, title, img, price, qnt: 1 }));
+        toast('Item added');
+      }
+      setCartState(true);
+      setBtnState(true);
+    },
+    [id, title, img, price, btnState],
+  );
 
   const addItemBtnCart = React.useCallback(() => {
     setBtnState(true);
@@ -47,7 +46,7 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
       disp(addItem({ id, title, img, price, qnt: 1 }));
       toast('Item added');
     }
-  }, [id, title, img, price, btnState ]);
+  }, [id, title, img, price, btnState]);
 
   return { btnState, addItemBtn, addItemBtnCart };
 };

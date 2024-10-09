@@ -2,18 +2,28 @@ import React from 'react';
 import { TCartItem } from '../store/slices/cartSlice.ts';
 import { TItem } from '../pages/home-page/index.tsx';
 
-export const useSetDataToLS = (
-  items?: TCartItem[],
-  page?: number,
-  limit?: number,
-  dataAll?: TItem[],
-  param?: string,
-) => {
+export const useSetDataToLS = ({
+  items,
+  page,
+  limit,
+  dataAll,
+  param,
+  btnState,
+  id,
+}: {
+  items?: TCartItem[];
+  page?: number;
+  limit?: number;
+  dataAll?: TItem[];
+  param?: string;
+  btnState?: boolean;
+  id?: string;
+}) => {
   const isMounted = React.useRef(false);
   {
     React.useEffect(() => {
-      if (isMounted.current) {
-        items && localStorage.setItem('data', JSON.stringify(items));
+      if (isMounted.current && items) {
+        localStorage.setItem('data', JSON.stringify(items));
       }
       isMounted.current = true;
     }, [items]);
@@ -21,30 +31,36 @@ export const useSetDataToLS = (
 
   {
     React.useEffect(() => {
-      page && localStorage.setItem('pagPage', page.toString());
+      if (page) localStorage.setItem('pagPage', page.toString());
     }, [page]);
   }
 
   {
     React.useEffect(() => {
-      limit && localStorage.setItem('pagLimit', limit.toString());
+      if (limit) localStorage.setItem('pagLimit', limit.toString());
     }, [limit]);
   }
 
   {
     React.useEffect(() => {
-      dataAll &&
+      if (dataAll && dataAll.length > 0) {
         localStorage.setItem(
           'data-colors',
-          JSON.stringify(
-            dataAll.map((el) => ({ id: el.id, color: el.color })),
-          ),
+          JSON.stringify(dataAll.map((el) => ({ id: el.id, color: el.color }))),
         );
+      }
     }, [dataAll]);
   }
   {
     React.useEffect(() => {
-      param && localStorage.setItem('searchParam', param);
+      if (param) localStorage.setItem('searchParam', param);
     }, [param]);
+  }
+  {
+    React.useEffect(() => {
+      if (id && btnState) {
+        localStorage.setItem(`btnState-${id}`, JSON.stringify(btnState));
+      }
+    }, [btnState, id]);
   }
 };

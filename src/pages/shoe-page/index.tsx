@@ -7,21 +7,21 @@ import { PulseLoader } from 'react-spinners';
 import { Cart } from '../../components/index.ts';
 import { HeroSingle } from './[shoe-hero]/index.tsx';
 
-type partItem = {
+export type partItem = {
   id: string;
   color: string;
 };
 
 export const ShoePage = () => {
   const { id } = useParams();
-  if (!id) return <p>Invalid id</p>;
+  if (!id) return null;
 
   const { initCol } = getDataFromLS();
-  const { color } = initCol.find((el: partItem) => el.id === id) || {};
+  const { color } = initCol.find((el) => el.id === id) || {};
   const { data, isLoading, error } = useFetchOne(id);
 
   const { items } = useSelector(selectCart);
-  useSetDataToLS(items);
+  useSetDataToLS({ items });
 
   return (
     <>

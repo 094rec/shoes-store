@@ -63,7 +63,7 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
         </div>
         <div className="flex flex-col items-end">
           <p className="text-sm lg:text--base font-light text-slate-900">
-            &#36;{qnt * +price}
+            &#36;{qnt * price}
           </p>
           <MemoDeleteBtn handleDel={handleDel} />
         </div>

@@ -39,7 +39,7 @@ export const HomePage = () => {
     `https://66efa6eff2a8bce81be3ba6e.mockapi.io/items?${searchVal ? '' : `l=${limit}&p=${page}&`}${searchVal ? `title=${searchVal}&` : ''}sortBy=${param}${param === 'rank' ? '&order=desc' : ''}`,
   );
   const hasItems = (data || []).length > 0;
-  
+
   const { data: dataAll, error: errorAll } = useFetchAllShoes();
 
   React.useEffect(() => {
@@ -53,7 +53,7 @@ export const HomePage = () => {
   }, [errorAll]);
 
   const { items } = useSelector(selectCart);
-  useSetDataToLS(items, page, limit, dataAll, param);
+  useSetDataToLS({ items, page, limit, dataAll, param });
 
   React.useEffect(() => {
     if (isMounted.current) {

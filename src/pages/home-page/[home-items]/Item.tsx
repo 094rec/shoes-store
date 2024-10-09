@@ -6,6 +6,17 @@ import { useItemBtnsLogic } from '../../../hooks/index.ts';
 import { FaCartShopping } from 'react-icons/fa6';
 import { FaStar } from 'react-icons/fa';
 
+const MemoImg = React.memo(
+  ({ id, img, title }: { id: string; img: string; title: string }) => (
+    <Link
+      to={`/shoes/${id}`}
+      className="absolute w-1/2 right-0 object-contain cursor-pointer duration-100 active:scale-90"
+    >
+      <img src={img} alt={title} loading="lazy" />
+    </Link>
+  ),
+);
+
 const MemoRank = React.memo(({ rank }: { rank: number }) => (
   <div className="flex items-center gap-0.5">
     <FaStar className="text-white/70 drop-shadow-lg size-3" />
@@ -13,7 +24,7 @@ const MemoRank = React.memo(({ rank }: { rank: number }) => (
   </div>
 ));
 
-const MemoCartBtn = React.memo(
+const MemoAddItemToCartBtn = React.memo(
   ({ btnState, addItemBtnCart }: { btnState: boolean; addItemBtnCart: () => void }) => (
     <FaCartShopping
       onClick={addItemBtnCart}
@@ -25,14 +36,20 @@ const MemoCartBtn = React.memo(
   ),
 );
 
-const MemoImg = React.memo(
-  ({ id, img, title }: { id: string; img: string; title: string }) => (
-    <Link
-      to={`/shoes/${id}`}
-      className="absolute w-1/2 right-0 object-contain cursor-pointer duration-100 active:scale-90"
+const MemoAddItemAndGoToCartBtn = React.memo(
+  ({
+    btnState,
+    addItemBtn,
+  }: {
+    btnState: boolean;
+    addItemBtn: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  }) => (
+    <button
+      onClick={addItemBtn}
+      className="btn-theme opacity-80 text-xs sm:text-sm p-1 px-2 sm:py-0.5 bg-white/60 text-slate-800"
     >
-      <img src={img} alt={title} loading="lazy" />
-    </Link>
+      {!btnState ? 'Buy now' : 'Go cart'}
+    </button>
   ),
 );
 
@@ -60,13 +77,8 @@ export const Item = ({ id, title, text, rank, img, price, color, shadow }: TItem
           <MemoRank rank={rank} />
         </div>
         <div className="flex justify-between items-center w-[100px]">
-          <MemoCartBtn btnState={btnState} addItemBtnCart={addItemBtnCart} />
-          <button
-            onClick={addItemBtn}
-            className="btn-theme opacity-80 text-xs sm:text-sm p-1 px-2 sm:py-0.5 bg-white/60 text-slate-800"
-          >
-            {!btnState ? 'Buy now' : 'Go cart'}
-          </button>
+          <MemoAddItemToCartBtn btnState={btnState} addItemBtnCart={addItemBtnCart} />
+          <MemoAddItemAndGoToCartBtn btnState={btnState} addItemBtn={addItemBtn} />
         </div>
       </div>
       <MemoImg id={id} img={img} title={title} />
