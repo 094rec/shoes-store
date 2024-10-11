@@ -62,8 +62,8 @@ export const selById = (id: string) => (state: RootState) => {
 };
 
 export const leftOne = (id: string) => (state: RootState) => {
-  return (state.cart.items.filter((el) => el.id !== id)).length === 0;
-};
+    return (state.cart.items.filter((el) => el.id !== id)).length === 0;
+  };
 
 export const selectCart = (state: RootState) => state.cart;
 export const { addItem, removeItem, delItem, removeAllItems } = cartSlice.actions;

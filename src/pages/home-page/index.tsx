@@ -8,7 +8,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice';
 import { getDataFromLS } from '../../utils';
-import { heroapi } from '../../data/data';
+import { heroapi } from '../../data/initData';
 import { MoonLoader } from 'react-spinners';
 import { Cart } from '../../components';
 import { Hero, Items, Pagination } from '..';

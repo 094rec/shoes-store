@@ -3,7 +3,6 @@ import { TCartItem } from '../../store/slices/cartSlice';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useCartItemCallbacks } from '../../hooks';
 
-
 const MemoImg = React.memo(
   ({ handleImg, img, title }: { handleImg: () => void; img: string; title: string }) => (
     <img
@@ -38,8 +37,6 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
     title,
     qnt,
   });
-
-  // useWhyDidYouUpdate('CartItem', { id, title, img, price, qnt, handleIncrease, handleDecrease, handleImg, handleDel });///
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { emptybag } from '../../data/data';
+import { emptybag } from '../../data/initData';
 
 export const CartEmpty = () => {
   return (
