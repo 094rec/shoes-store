@@ -82,7 +82,7 @@ export const HomePage = () => {
             param={param}
             setParam={(val) => setParam(val)}
           />
-          {!hasItems && (
+          {!hasItems && !searchVal && (
             <NotFound
               title="Shoes not found. Please try to reload an App"
               className="-mt-8 mb-10 text-red-900/90 md:text-2xl"

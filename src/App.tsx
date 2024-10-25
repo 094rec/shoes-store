@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import {
   Route,
   createBrowserRouter,
@@ -14,8 +14,8 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { CartProvider } from './contexts/CartContext';
 import { SearchProvider } from './contexts/SearchContext';
 import { queryClient } from './config/queryClient';
-// import ShoePage from './pages/shoe-page/index.tsx';
-const ShoePage = React.lazy(() => import('./pages/shoe-page'));
+import ShoePage from './pages/shoe-page/index.tsx';
+// const ShoePage = React.lazy(() => import('./pages/shoe-page'));
 
 const App = () => {
   const router = createBrowserRouter(

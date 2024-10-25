@@ -5,7 +5,7 @@ import {
   pageSchema,
   parameterSchema,
   stateSchema,
-} from '../schemas';
+} from './validationLS';
 import { recalculateTotals, parseData, resetData } from '.';
 import { DEFAULT_ITEM_COUNT, DEFAULT_LIMIT, DEFAULT_PARAM } from './constants';
 
@@ -15,7 +15,7 @@ export const getDataFromLS = (id?: string) => {
   const storedCol = parseData('data-colors');
 
   const storedPage = localStorage.getItem('pagPage');
-  const storedLim = localStorage.getItem('pagLimit');
+  const storedLim = localStorage.getItem('pagLimit') || DEFAULT_LIMIT;
   const storedParam = localStorage.getItem('searchParam');
   const storedSt = localStorage.getItem(`btnState-${id}`);
 

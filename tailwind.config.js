@@ -13,6 +13,12 @@ export default {
     },
   },
   safelist: [
+    'opacity-0',
+    'opacity-25',
+    'opacity-50',
+    'opacity-75',
+    'opacity-100',
+
     { pattern: /from-(gray|slate|blue)-900/ },
     { pattern: /from-(indigo|orange|gray)-700/ },
     { pattern: /from-(blue|sky|green)-600/ },
