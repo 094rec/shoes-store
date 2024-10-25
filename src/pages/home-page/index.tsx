@@ -9,8 +9,7 @@ import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice';
 import { getDataFromLS } from '../../utils';
 import { heroapi } from '../../data/initData';
-import { MoonLoader } from 'react-spinners';
-import { Cart } from '../../components';
+import { Cart, Loader, NotFound } from '../../components';
 import { Hero, Items, Pagination } from '..';
 
 export type TItem = {
@@ -62,44 +61,44 @@ export const HomePage = () => {
     }
     isMounted.current = true;
   }, [limit]);
-  
+
   return (
     <>
       {error && null}
       {errorAll && null}
       <Cart />
       {!searchVal && <Hero {...heroapi} />}
-      {isLoading ? (
-        <div className="opacity-100 flex justify-center items-center h-screen">
-          <MoonLoader
-            color="#227cdf"
-            size={window.innerWidth > 640 ? 80 : 65}
-            loading={isLoading}
+      <Loader
+        type="moon"
+        color="#227cdf"
+        size={window.innerWidth > 640 ? 80 : 65}
+        loading={isLoading}
+      />
+      {!isLoading && (
+        <>
+          <Items
+            searchVal={searchVal}
+            items={data}
+            param={param}
+            setParam={(val) => setParam(val)}
           />
-        </div>
-      ) : (
-        <Items
-          searchVal={searchVal}
-          items={data}
-          param={param}
-          setParam={(val) => setParam(val)}
-        />
-      )}
-      {!hasItems && !isLoading && (
-        <p className="w-10/12 m-auto font-medium filter drop-shadow-md text-center text-red-900/90 text-lg xx:text-xl md:text-2xl -mt-8 mb-10">
-          Shoes not found. Please try to reload an App
-          <span className="whitespace-nowrap">(·•᷄∩•᷅ )</span>
-        </p>
-      )}
-      {hasItems && !searchVal && !errorAll && (
-        <Pagination
-          passNum={(n) => setPage(n)}
-          setActive={(n) => setActive(n)}
-          active={active}
-          setLimit={(val) => setLimit(val)}
-          limit={limit}
-          data={dataAll}
-        />
+          {!hasItems && (
+            <NotFound
+              title="Shoes not found. Please try to reload an App"
+              className="-mt-8 mb-10 text-red-900/90 md:text-2xl"
+            />
+          )}
+          {hasItems && !searchVal && !errorAll && (
+            <Pagination
+              passNum={(n) => setPage(n)}
+              setActive={(n) => setActive(n)}
+              active={active}
+              setLimit={(val) => setLimit(val)}
+              limit={limit}
+              data={dataAll}
+            />
+          )}
+        </>
       )}
     </>
   );

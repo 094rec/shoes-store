@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice';
 import { useFetchOne, useSetDataToLS } from '../../hooks';
 import { getDataFromLS } from '../../utils';
-import { PulseLoader } from 'react-spinners';
-import { Cart } from '../../components';
+import { Cart, Containter, Loader, NotFound } from '../../components';
 import { HeroSingle } from './[shoe-hero]';
 
 export type partItem = {
@@ -12,7 +11,7 @@ export type partItem = {
   color: string;
 };
 
-export const ShoePage = () => {
+export default function ShoePage() {
   const { id } = useParams();
   if (!id) return null;
 
@@ -26,32 +25,26 @@ export const ShoePage = () => {
   return (
     <>
       <Cart />
-      <div
-        className={`relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-b ${color || 'from-blue-500 to-blue-400'} p-6`}
-      >
-        {isLoading ? (
-          <div className="opacity-25">
-            <PulseLoader
-              color="#fff"
-              size={window.innerWidth > 500 ? 20 : 16}
-              loading={isLoading}
-            />
-          </div>
-        ) : (
+      <Containter color={color}>
+        <Loader
+          type="pulse"
+          loading={isLoading}
+          color="#fff"
+          size={window.innerWidth > 500 ? 20 : 16}
+          opacity={25}
+        />
+        {!isLoading && (
           <>
-            {!error ? (
-              <HeroSingle item={data} />
-            ) : (
-              <p className="w-10/12 m-auto font-medium filter drop-shadow-md text-center text-white/80 text-lg xx:text-xl sm:text-2xl">
-                Shoe not found. Please try to reload the Page
-                <span className="whitespace-nowrap">(·•᷄∩•᷅ )</span>
-              </p>
+            {!error && <HeroSingle item={data} />}
+            {error && (
+              <NotFound
+                title="Shoe not found. Please try to reload the Page"
+                className="text-white/80 sm:text-2xl"
+              />
             )}
           </>
         )}
-      </div>
+      </Containter>
     </>
   );
-};
-
-export default ShoePage;
+}

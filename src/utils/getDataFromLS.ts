@@ -6,14 +6,8 @@ import {
   parameterSchema,
   stateSchema,
 } from '../schemas';
-import {
-  recalculateTotals,
-  parseData,
-  resetData,
-  DEFAULT_ITEM_COUNT,
-  DEFAULT_LIMIT,
-  DEFAULT_PARAM,
-} from '.';
+import { recalculateTotals, parseData, resetData } from '.';
+import { DEFAULT_ITEM_COUNT, DEFAULT_LIMIT, DEFAULT_PARAM } from './constants';
 
 export const getDataFromLS = (id?: string) => {
   //getting data from ls for items/page/limit/param/colors/state

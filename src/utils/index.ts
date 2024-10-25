@@ -3,4 +3,3 @@ export * from './toast';
 export * from './recalculateTotals';
 export * from './getDataFromLS';
 export * from './preparingData';
-export * from './constants';
