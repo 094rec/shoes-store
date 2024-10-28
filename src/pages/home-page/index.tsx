@@ -3,10 +3,8 @@ import {
   useFetchFilteredShoes,
   useSetDataToLS,
 } from '../../hooks';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice';
-import { getDataFromLS } from '../../utils';
 import { heroapi } from '../../data/initData';
 import { useSearchStore } from '../../store';
 import { Cart, Loader, NotFound } from '../../components';
@@ -25,42 +23,15 @@ export type TItem = {
 };
 
 export const HomePage = () => {
-  const { initPage, initAct, initLim, initParam } = getDataFromLS();
-  const [page, setPage] = React.useState(initPage);
-  const [limit, setLimit] = React.useState(initLim);
-  const [active, setActive] = React.useState(initAct);
-  const [param, setParam] = React.useState(initParam);
   const { searchVal } = useSearchStore();
-  const isMounted = React.useRef(false);
 
-  const { data, isLoading, error } = useFetchFilteredShoes(
-    ['shoes', page, limit, searchVal, param],
-    `https://66efa6eff2a8bce81be3ba6e.mockapi.io/items?${searchVal ? '' : `l=${limit}&p=${page}&`}${searchVal ? `title=${searchVal}&` : ''}sortBy=${param}${param === 'rank' ? '&order=desc' : ''}`,
-  );
+  const { data, isLoading, error } = useFetchFilteredShoes();
   const hasItems = (data || []).length > 0;
 
   const { data: dataAll, error: errorAll } = useFetchAllShoes();
 
-  React.useEffect(() => {
-    errorAll && setLimit(20);
-    return () => {
-      if (errorAll) {
-        localStorage.setItem('pagLimit', '4');
-        localStorage.setItem('pagPage', '1');
-      }
-    };
-  }, [errorAll]);
-
   const { items } = useSelector(selectCart);
-  useSetDataToLS({ items, page, limit, dataAll, param });
-
-  React.useEffect(() => {
-    if (isMounted.current) {
-      setPage(1);
-      setActive(1);
-    }
-    isMounted.current = true;
-  }, [limit]);
+  useSetDataToLS({ items, dataAll });
 
   return (
     <>
@@ -79,8 +50,6 @@ export const HomePage = () => {
           <Items
             searchVal={searchVal}
             items={data}
-            param={param}
-            setParam={(val) => setParam(val)}
           />
           {!hasItems && !searchVal && (
             <NotFound
@@ -90,11 +59,6 @@ export const HomePage = () => {
           )}
           {hasItems && !searchVal && !errorAll && (
             <Pagination
-              passNum={(n) => setPage(n)}
-              setActive={(n) => setActive(n)}
-              active={active}
-              setLimit={(val) => setLimit(val)}
-              limit={limit}
               data={dataAll}
             />
           )}

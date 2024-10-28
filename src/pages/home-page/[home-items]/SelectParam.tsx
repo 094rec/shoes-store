@@ -1,24 +1,23 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useClickAway } from 'react-use';
-import { useSearchStore } from '../../../store';
+import { useFilterStore, useSearchStore } from '../../../store';
 import { AiFillLike } from 'react-icons/ai';
 import { GrMoney } from 'react-icons/gr';
 import { MdAbc } from 'react-icons/md';
 
-type Props = {
-  param: string;
-  setParam: (param: string) => void;
-};
-
-export const SelectParam = ({ param, setParam }: Props) => {
+export const SelectParam = () => {
+  const { param, setParam } = useFilterStore();
   const { searchVal } = useSearchStore();
 
-  const options = React.useMemo(() => [
-    { value: 'title', icon: <MdAbc className="size-7 -m-1 text-black/90" /> },
-    { value: 'price', icon: <GrMoney className="size-4 text-black/90" /> },
-    { value: 'rank', icon: <AiFillLike className="size-4 sm:size-5 text-black/90" /> },
-  ], []);
+  const options = React.useMemo(
+    () => [
+      { value: 'title', icon: <MdAbc className="size-7 -m-1 text-black/90" /> },
+      { value: 'price', icon: <GrMoney className="size-4 text-black/90" /> },
+      { value: 'rank', icon: <AiFillLike className="size-4 sm:size-5 text-black/90" /> },
+    ],
+    [],
+  );
 
   const [dropState, setDropState] = React.useState(false);
   const ref = React.useRef(null);

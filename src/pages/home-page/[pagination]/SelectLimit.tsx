@@ -1,15 +1,19 @@
 import React from 'react';
 import { TItem } from '..';
 import { useClickAway } from 'react-use';
+import { useFilterStore } from '../../../store';
 import { TbNumber4Small, TbNumber6Small } from 'react-icons/tb';
 
 type Props = {
-  limit: number;
-  setLimit: (limit: number) => void;
   data: TItem[];
 };
 
-export const SelectLimit = ({ limit, setLimit, data }: Props) => {
+export const SelectLimit = ({ data }: Props) => {
+  const { limit, setLimit } = useFilterStore();
+  const [dropState, setDropState] = React.useState(false);
+  const ref = React.useRef(null);
+  useClickAway(ref, () => setDropState(false));
+  
   const options = React.useMemo(
     () => [
       { value: 4, icon: <TbNumber4Small className="size-6 -m-1 text-black/50" /> },
@@ -23,10 +27,6 @@ export const SelectLimit = ({ limit, setLimit, data }: Props) => {
     ],
     [data?.length],
   );
-
-  const [dropState, setDropState] = React.useState(false);
-  const ref = React.useRef(null);
-  useClickAway(ref, () => setDropState(false));
 
   return (
     <div className="relative z-20 grid items-center justify-start">
@@ -50,7 +50,6 @@ export const SelectLimit = ({ limit, setLimit, data }: Props) => {
               <li
                 key={option.value}
                 onClick={() => {
-                  console.log(option.value); //
                   setDropState(false);
                   setLimit(option.value);
                 }}

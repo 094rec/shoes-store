@@ -1,43 +1,41 @@
 import React from 'react';
 import clsx from 'clsx';
 import { TItem } from '..';
-import { SelectParam } from './SelectParam';
 import { Item } from './Item';
+import { SelectParam } from './SelectParam';
 
 type Props = {
   items: TItem[];
   searchVal: string;
-  param: string;
-  setParam: (param: string) => void;
 };
 
 const MemoizedItem = React.memo(Item);
 
-export const Items = ({ items = [], searchVal: val, param, setParam }: Props) => {
+export const Items = ({ items = [], searchVal }: Props) => {
   const hasItems = (items || []).length > 0;
   return (
     <>
       <div
-        className={`${val && 'relative flex bg-gradient-to-b from-blue-200 to-sky-100 h-screen'}`}
+        className={`${searchVal && 'relative flex bg-gradient-to-b from-blue-200 to-sky-100 h-screen'}`}
       >
-        <div className={`w-10/12 mx-auto xs:w-11/12 ${val && 'mt-16'}`}>
+        <div className={`w-10/12 mx-auto xs:w-11/12 ${searchVal && 'mt-16'}`}>
           <div className="flex justify-between items-center mb-4">
             <h3
               className={clsx(
                 'font-extrabold filter drop-shadow-md text-center xx:text-left',
-                !val
+                !searchVal
                   ? 'text-slate-900 text-2xl xx:text-3xl sm:text-4xl'
                   : 'text-slate-900/80 text-xl xx:text-2xl sm:text-3xl',
               )}
             >
-              {!val && hasItems && <p>Popular Sales</p>}
-              {val && (
+              {!searchVal && hasItems && <p>Popular Sales</p>}
+              {searchVal && (
                 <p>
                   Found: {items.length} {!hasItems && <span>(·•᷄∩•᷅ )</span>}
                 </p>
               )}
             </h3>
-            {hasItems && <SelectParam param={param} setParam={setParam} />}
+            {hasItems && <SelectParam />}
           </div>
 
           {hasItems && (
