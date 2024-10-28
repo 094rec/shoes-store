@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getDataFromLS } from '../../utils';
-import { RootState } from '..';
+import { RootState } from '../indexr';
 
 export type TCartItem = {
   id: string;

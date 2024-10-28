@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../store/slices/cartSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useCartContext, useSearchContext } from '../hooks';
+import { useCartStateStore, useSearchStore } from '../store';
 import { SiNike } from 'react-icons/si';
 import { BsBag } from 'react-icons/bs';
 import { Search } from './Search';
@@ -15,8 +15,8 @@ export const Navbar = () => {
   const nav = useNavigate();
   const { totalQnt } = useSelector(selectCart);
   const isHomePage = loc.pathname === '/';
-  const { setSearchVal } = useSearchContext();
-  const { setCartState } = useCartContext();
+  const { setSearchVal } = useSearchStore();
+  const { setCartState } = useCartStateStore();
   const [navState, setNavState] = React.useState(false);
   const [tempSearch, setTempSearch] = React.useState('');
 

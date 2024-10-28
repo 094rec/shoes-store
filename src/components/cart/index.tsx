@@ -2,7 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice';
-import { useCartContext, useOutsideClick } from '../../hooks';
+import { useCartStateStore } from '../../store';
+import { useOutsideClick } from '../../hooks';
 import { CartCount, CartEmpty } from '..';
 import { CartItem } from './CartItem';
 
@@ -10,7 +11,7 @@ const MemoizedCartItem = React.memo(CartItem);
 
 export const Cart = () => {
   const { items, total, totalQnt } = useSelector(selectCart);
-  const { cartState, setCartState } = useCartContext();
+  const { cartState, setCartState } = useCartStateStore();
   const cartRef = useOutsideClick(() => setCartState(false));
 
   return (

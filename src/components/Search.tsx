@@ -1,6 +1,6 @@
 import React from 'react';
 import debounce from 'debounce';
-import { useSearchContext } from '../hooks';
+import { useSearchStore } from '../store';
 import { IoCloseOutline } from 'react-icons/io5';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 
 export const Search = ({ tempSearch, setTempSearch }: Props) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const { searchVal, setSearchVal } = useSearchContext();
+  const { searchVal, setSearchVal } = useSearchStore();
 
   React.useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {

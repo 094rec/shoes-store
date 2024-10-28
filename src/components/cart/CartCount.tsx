@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import { removeAllItems, TCartItem } from '../../store/slices/cartSlice';
-import { useCartContext } from '../../hooks';
+import { useCartStateStore } from '../../store';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import { TiArrowBack } from 'react-icons/ti';
 
@@ -27,7 +27,7 @@ const MemoDeleteBtn = React.memo(
 
 export const CartCount = React.memo(({ totalQnt: qnt, items }: { totalQnt: number; items: TCartItem[] }) => {
   const disp = useDispatch();
-  const { setCartState } = useCartContext();
+  const { cartState, setCartState } = useCartStateStore();
 
   const closeCart = useCallback(() => {
     setCartState(false);
@@ -36,7 +36,7 @@ export const CartCount = React.memo(({ totalQnt: qnt, items }: { totalQnt: numbe
   const clearCart = React.useCallback(() => {
     if (items.length !== 0) {
       disp(removeAllItems());
-      const timeoutId = setTimeout(() => setCartState((prev) => !prev), 100);
+      const timeoutId = setTimeout(() => setCartState(!cartState), 100);
       return () => clearTimeout(timeoutId);
     }
   }, [items]);

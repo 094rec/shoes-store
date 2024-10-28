@@ -1,7 +1,6 @@
 import {
   useFetchAllShoes,
   useFetchFilteredShoes,
-  useSearchContext,
   useSetDataToLS,
 } from '../../hooks';
 import React from 'react';
@@ -9,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice';
 import { getDataFromLS } from '../../utils';
 import { heroapi } from '../../data/initData';
+import { useSearchStore } from '../../store';
 import { Cart, Loader, NotFound } from '../../components';
 import { Hero, Items, Pagination } from '..';
 
@@ -30,7 +30,7 @@ export const HomePage = () => {
   const [limit, setLimit] = React.useState(initLim);
   const [active, setActive] = React.useState(initAct);
   const [param, setParam] = React.useState(initParam);
-  const { searchVal } = useSearchContext();
+  const { searchVal } = useSearchStore();
   const isMounted = React.useRef(false);
 
   const { data, isLoading, error } = useFetchFilteredShoes(

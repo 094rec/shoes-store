@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useSearchContext } from '../../../hooks';
+import { useSearchStore } from '../../../store';
 import { Clip } from './Clip';
 
 type Props = {
@@ -20,13 +20,13 @@ type Props = {
 const MemoizedClip = React.memo(Clip);
 
 export const Hero = ({ title, subtitle, img, btntext, videos = [], sociallinks = [] }: Props) => {
-  const { searchVal: val } = useSearchContext();
+  const { searchVal } = useSearchStore();
   return (
     <>
       <div
         className={clsx(
           'transition-all duration-300 flex flex-col mb-10 xx:mb-18 sm:mb-28 -mt-2',
-          !val
+          !searchVal
             ? 'relative opacity-100 visible translate-x-0'
             : 'absolute opacity-0 invisible translate-x-8',
         )}

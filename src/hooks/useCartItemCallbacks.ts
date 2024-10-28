@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCartContext } from '.';
+import { useCartStateStore } from '../store';
 import {
   addItem,
   delItem,
@@ -14,7 +14,7 @@ import {
 export const useCartItemCallbacks = ({ id, title, img, price, qnt }: TCartItem) => {
   const disp = useDispatch();
   const nav = useNavigate();
-  const { setCartState } = useCartContext();
+  const { setCartState } = useCartStateStore();
   const isLeftOne = useSelector(leftOne(id));
   const item = useSelector(selById(id));
 

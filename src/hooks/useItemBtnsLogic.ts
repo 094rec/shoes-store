@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, selById } from '../store/slices/cartSlice';
-import { useCartContext, useSetDataToLS } from '.';
+import { useCartStateStore } from '../store';
+import { useSetDataToLS } from '.';
 import { getDataFromLS, toast } from '../utils';
 
 type CartBtnProps = {
@@ -13,7 +14,7 @@ type CartBtnProps = {
 
 export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
   const disp = useDispatch();
-  const { setCartState } = useCartContext();
+  const { setCartState } = useCartStateStore();
   const item = useSelector(selById(id));
   const { initSt } = getDataFromLS(id);
   const [btnState, setBtnState] = React.useState(initSt);
