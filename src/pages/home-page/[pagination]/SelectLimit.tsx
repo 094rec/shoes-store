@@ -1,6 +1,6 @@
 import React from 'react';
 import { TItem } from '..';
-import { useOutsideClick } from '../../../hooks';
+import { useClickAway } from 'react-use';
 import { TbNumber4Small, TbNumber6Small } from 'react-icons/tb';
 
 type Props = {
@@ -25,7 +25,8 @@ export const SelectLimit = ({ limit, setLimit, data }: Props) => {
   );
 
   const [dropState, setDropState] = React.useState(false);
-  const limitRef = useOutsideClick(() => setDropState(false));
+  const ref = React.useRef(null);
+  useClickAway(ref, () => setDropState(false));
 
   return (
     <div className="relative z-20 grid items-center justify-start">
@@ -41,7 +42,7 @@ export const SelectLimit = ({ limit, setLimit, data }: Props) => {
 
       {dropState && (
         <div
-          ref={limitRef}
+          ref={ref}
           className="absolute mb-[43px] xs:mb-[46px] sm:mb-[56px] w-[32px] sm:w-[37px] rounded-xl shadow-lg bg-white"
         >
           <ul>

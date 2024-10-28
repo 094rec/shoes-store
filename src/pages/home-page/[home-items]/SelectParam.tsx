@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useOutsideClick } from '../../../hooks';
+import { useClickAway } from 'react-use';
 import { useSearchStore } from '../../../store';
 import { AiFillLike } from 'react-icons/ai';
 import { GrMoney } from 'react-icons/gr';
@@ -21,7 +21,8 @@ export const SelectParam = ({ param, setParam }: Props) => {
   ], []);
 
   const [dropState, setDropState] = React.useState(false);
-  const paramRef = useOutsideClick(() => setDropState(false));
+  const ref = React.useRef(null);
+  useClickAway(ref, () => setDropState(false));
 
   return (
     <div className="relative z-20 grid items-center justify-start">
@@ -42,7 +43,7 @@ export const SelectParam = ({ param, setParam }: Props) => {
 
       {dropState && (
         <div
-          ref={paramRef}
+          ref={ref}
           className={clsx(
             'absolute mt-[60px] w-[53px] rounded-md shadow-lg',
             !searchVal ? 'bg-white' : 'bg-blue-100',

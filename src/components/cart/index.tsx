@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cartSlice';
 import { useCartStateStore } from '../../store';
-import { useOutsideClick } from '../../hooks';
+import { useClickAway } from 'react-use';
 import { CartCount, CartEmpty } from '..';
 import { CartItem } from './CartItem';
 
@@ -12,7 +12,9 @@ const MemoizedCartItem = React.memo(CartItem);
 export const Cart = () => {
   const { items, total, totalQnt } = useSelector(selectCart);
   const { cartState, setCartState } = useCartStateStore();
-  const cartRef = useOutsideClick(() => setCartState(false));
+  const ref = React.useRef(null); 
+  useClickAway(ref, () => setCartState(false));
+
 
   return (
     <div
@@ -22,7 +24,7 @@ export const Cart = () => {
       )}
     >
       <div
-        ref={cartRef}
+        ref={ref}
         className="absolute blur-effect-theme h-screen max-w-[20rem] xx:max-w-[22rem] xs:max-w-[26rem] sm:max-w-[30rem] opacity-100 right-0 w-screen transition-all"
       >
         <CartCount totalQnt={totalQnt} items={items}/>
