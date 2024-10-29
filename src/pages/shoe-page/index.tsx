@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectCart } from '../../store/slices/cartSlice';
-import { useFetchOne, useSetDataToLS } from '../../hooks';
+import { useFetchOne } from '../../hooks';
 import { getDataFromLS } from '../../utils';
 import { Cart, Containter, Loader, NotFound } from '../../components';
 import { HeroSingle } from './[shoe-hero]';
@@ -15,12 +13,9 @@ export default function ShoePage() {
   const { id } = useParams();
   if (!id) return null;
 
-  const { initCol } = getDataFromLS();
+  const initCol = getDataFromLS().initCol;
   const { color } = initCol.find((el) => el.id === id) || {};
   const { data, isLoading, error } = useFetchOne(id);
-
-  const { items } = useSelector(selectCart);
-  useSetDataToLS({ items });
 
   return (
     <>

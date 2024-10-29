@@ -1,9 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
-import { selectCart } from '../store/slices/cartSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useCartStateStore, useSearchStore } from '../store';
+import { useCartStateStore, useCartStore, useSearchStore } from '../store';
 import { SiNike } from 'react-icons/si';
 import { BsBag } from 'react-icons/bs';
 import { Search } from './Search';
@@ -13,7 +11,7 @@ const MemoizedSearch = React.memo(Search);
 export const Navbar = () => {
   const loc = useLocation();
   const nav = useNavigate();
-  const { totalQnt } = useSelector(selectCart);
+  const totalQnt = useCartStore((state) => state.totalQnt);
   const isHomePage = loc.pathname === '/';
   const { setSearchVal } = useSearchStore();
   const { setCartState } = useCartStateStore();

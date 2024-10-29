@@ -1,7 +1,7 @@
 import React from 'react';
-import { TCartItem } from '../../store/slices/cartSlice';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useCartItemCallbacks } from '../../hooks';
+import { TCartItem } from '../../store';
 
 const MemoImg = React.memo(
   ({ handleImg, img, title }: { handleImg: () => void; img: string; title: string }) => (
@@ -30,13 +30,8 @@ const MemoIncreaseBtn = React.memo(({ handleIncrease }: { handleIncrease: () => 
 ));
 
 export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
-  const { handleIncrease, handleDecrease, handleImg, handleDel } = useCartItemCallbacks({
-    id,
-    img,
-    price,
-    title,
-    qnt,
-  });
+  const item = { id, img, price, title, qnt };
+  const { handleIncrease, handleDecrease, handleImg, handleDel } = useCartItemCallbacks(item);
 
   return (
     <>
@@ -52,7 +47,7 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
                 className="text-xs lg:text-base bg-theme-cart text-white w-5 h-5 lg:w-6 lg:h-6 rounded-md drop-shadow-sm transition-all duration-300 active:scale-90"
                 onClick={handleDecrease}
               >
-                {qnt > 1 ? '-' : 'x'}
+                {(qnt ?? 0) > 1 ? '-' : 'x'}
               </button>
               <p className="text-xs lg:text-base bg-theme-cart flex justify-center items-center text-white w-5 h-5 lg:w-6 lg:h-6 rounded-md">
                 {qnt}
@@ -62,9 +57,7 @@ export const CartItem = ({ id, img, price, title, qnt }: TCartItem) => {
           </div>
         </div>
         <div className="flex flex-col items-end">
-          <p className="text-sm lg:text--base font-light text-slate-900">
-            &#36;{qnt * price}
-          </p>
+          <p className="text-sm lg:text--base font-light text-slate-900">&#36;{(qnt ?? 0) * price}</p>
           <MemoDeleteBtn handleDel={handleDel} />
         </div>
       </div>

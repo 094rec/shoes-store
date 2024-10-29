@@ -3,8 +3,6 @@ import {
   useFetchFilteredShoes,
   useSetDataToLS,
 } from '../../hooks';
-import { useSelector } from 'react-redux';
-import { selectCart } from '../../store/slices/cartSlice';
 import { heroapi } from '../../data/initData';
 import { useSearchStore } from '../../store';
 import { Cart, Loader, NotFound } from '../../components';
@@ -30,8 +28,7 @@ export const HomePage = () => {
 
   const { data: dataAll, error: errorAll } = useFetchAllShoes();
 
-  const { items } = useSelector(selectCart);
-  useSetDataToLS({ items, dataAll });
+  useSetDataToLS({ dataAll });
 
   return (
     <>

@@ -6,8 +6,6 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
-import { Provider } from 'react-redux';
-import { store } from './store/indexr';
 import { HomePage } from './pages/home-page';
 import { ToastContainer } from 'react-toastify';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -29,12 +27,10 @@ const App = () => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          {/* <Suspense fallback={<div>...loading</div>}> */}
-          <RouterProvider router={router} />
-          <ToastContainer />
-          {/* </Suspense> */}
-        </Provider>
+        {/* <Suspense fallback={<div>...loading</div>}> */}
+        <RouterProvider router={router} />
+        <ToastContainer />
+        {/* </Suspense> */}
       </QueryClientProvider>
     </>
   );

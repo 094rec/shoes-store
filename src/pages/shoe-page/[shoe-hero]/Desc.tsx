@@ -4,7 +4,8 @@ import { IoCaretBack } from 'react-icons/io5';
 import { TItem } from '../../home-page';
 
 export const Desc = ({ id, title, text, img, price }: TItem) => {
-  const { btnState, addItemBtn } = useItemBtnsLogic({ id, title, img, price });
+  const item = { id, title, img, price };
+  const { btnState, addItemBtn } = useItemBtnsLogic(item);
   const nav = useNavigate();
   return (
     <>

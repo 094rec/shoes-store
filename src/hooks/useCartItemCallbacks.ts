@@ -1,25 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCartStateStore } from '../store';
-import {
-  addItem,
-  delItem,
-  leftOne,
-  removeItem,
-  selById,
-  TCartItem,
-} from '../store/slices/cartSlice';
+import { TCartItem, useCartStateStore, useCartStore  } from '../store';
 
-export const useCartItemCallbacks = ({ id, title, img, price, qnt }: TCartItem) => {
-  const disp = useDispatch();
+export const useCartItemCallbacks = ({ id, title, img, price }: TCartItem) => {
   const nav = useNavigate();
   const { setCartState } = useCartStateStore();
-  const isLeftOne = useSelector(leftOne(id));
-  const item = useSelector(selById(id));
+  const incItem = useCartStore((state) => state.incItem);
+  const decItem = useCartStore((state) => state.decItem);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const item = useCartStore((state) => state.selById(id));
+  const isLeftOne = useCartStore((state) => state.leftOne(id));
+
 
   const handleIncrease = React.useCallback(() => {
-    disp(addItem({ id, title, img, price, qnt }));
+    incItem({ id, title, img, price });
   }, [id, title, img, price]);
 
   const handleImg = React.useCallback(() => {
@@ -28,16 +22,16 @@ export const useCartItemCallbacks = ({ id, title, img, price, qnt }: TCartItem) 
   }, [id, setCartState]);
 
   const handleDecrease = React.useCallback(() => {
-    disp(removeItem({ id }));
+    decItem(id);
     setTimeout(() => {
-      if (isLeftOne && item && item.qnt < 2) {
+      if (isLeftOne && item && (item.qnt ?? 0) < 2) {
         setCartState(false);
       }
     }, 0);
   }, [id, item, isLeftOne]);
 
   const handleDel = React.useCallback(() => {
-    disp(delItem({ id }));
+    removeItem(id);
     setTimeout(() => {
       if (isLeftOne) setCartState(false);
     }, 0);

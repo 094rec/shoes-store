@@ -1,13 +1,13 @@
 import React from 'react';
-import { TCartItem } from '../store/slices/cartSlice';
 import { TItem } from '../pages/home-page';
+import { TCartItem } from '../store';
 
 export const useSetDataToLS = ({
-  items,
-  page,
-  limit,
+  // items,
+  // page,
+  // limit,
   dataAll,
-  param,
+  // param,
   btnState,
   id,
 }: {
@@ -19,27 +19,27 @@ export const useSetDataToLS = ({
   btnState?: boolean;
   id?: string;
 }) => {
-  const isMounted = React.useRef(false);
-  {
-    React.useEffect(() => {
-      if (isMounted.current && items) {
-        localStorage.setItem('data', JSON.stringify(items));
-      }
-      isMounted.current = true;
-    }, [items]);
-  }
+  // const isMounted = React.useRef(false);
+  // {
+  //   React.useEffect(() => {
+  //     if (isMounted.current && items) {
+  //       localStorage.setItem('data', JSON.stringify(items));
+  //     }
+  //     isMounted.current = true;
+  //   }, [items]);
+  // }
 
-  {
-    React.useEffect(() => {
-      if (page) localStorage.setItem('pagPage', page.toString());
-    }, [page]);
-  }
+  // {
+  //   React.useEffect(() => {
+  //     if (page) localStorage.setItem('pagPage', page.toString());
+  //   }, [page]);
+  // }
 
-  {
-    React.useEffect(() => {
-      if (limit) localStorage.setItem('pagLimit', limit.toString());
-    }, [limit]);
-  }
+  // {
+  //   React.useEffect(() => {
+  //     if (limit) localStorage.setItem('pagLimit', limit.toString());
+  //   }, [limit]);
+  // }
 
   {
     React.useEffect(() => {
@@ -51,11 +51,11 @@ export const useSetDataToLS = ({
       }
     }, [dataAll]);
   }
-  {
-    React.useEffect(() => {
-      if (param) localStorage.setItem('searchParam', param);
-    }, [param]);
-  }
+  // {
+  //   React.useEffect(() => {
+  //     if (param) localStorage.setItem('searchParam', param);
+  //   }, [param]);
+  // }
   {
     React.useEffect(() => {
       if (id && btnState) {

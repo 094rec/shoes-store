@@ -1,8 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
-import { selectCart } from '../../store/slices/cartSlice';
-import { useCartStateStore } from '../../store';
+import { useCartStateStore, useCartStore } from '../../store';
 import { useClickAway } from 'react-use';
 import { CartCount, CartEmpty } from '..';
 import { CartItem } from './CartItem';
@@ -10,11 +8,13 @@ import { CartItem } from './CartItem';
 const MemoizedCartItem = React.memo(CartItem);
 
 export const Cart = () => {
-  const { items, total, totalQnt } = useSelector(selectCart);
-  const { cartState, setCartState } = useCartStateStore();
-  const ref = React.useRef(null); 
-  useClickAway(ref, () => setCartState(false));
+  const items = useCartStore((state) => state.items);
+  const total = useCartStore((state) => state.total);
+  const totalQnt = useCartStore((state) => state.totalQnt);
 
+  const { cartState, setCartState } = useCartStateStore();
+  const ref = React.useRef(null);
+  useClickAway(ref, () => setCartState(false));
 
   return (
     <div
@@ -27,8 +27,8 @@ export const Cart = () => {
         ref={ref}
         className="absolute blur-effect-theme h-screen max-w-[20rem] xx:max-w-[22rem] xs:max-w-[26rem] sm:max-w-[30rem] opacity-100 right-0 w-screen transition-all"
       >
-        <CartCount totalQnt={totalQnt} items={items}/>
-        {items.length < 1 && <CartEmpty />}
+        <CartCount />
+        {totalQnt < 1 && <CartEmpty />}
         <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth scroll-hidden items-center w-full h-screen p-3 drop-shadow-sm">
           {items?.map((item) => <MemoizedCartItem {...item} key={item.id} />)}
         </div>

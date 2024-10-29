@@ -1,7 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selById } from '../store/slices/cartSlice';
-import { useCartStateStore } from '../store';
+import { useCartStateStore, useCartStore } from '../store';
 import { useSetDataToLS } from '.';
 import { getDataFromLS, toast } from '../utils';
 
@@ -13,11 +11,11 @@ type CartBtnProps = {
 };
 
 export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
-  const disp = useDispatch();
   const { setCartState } = useCartStateStore();
-  const item = useSelector(selById(id));
-  const { initSt } = getDataFromLS(id);
+  const initSt = getDataFromLS(id).initSt;
   const [btnState, setBtnState] = React.useState(initSt);
+  const incItem = useCartStore((state) => state.incItem);
+  const item = useCartStore((state) => state.selById(id));
 
   React.useEffect(() => {
     if (!item) setBtnState(false);
@@ -29,7 +27,7 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.stopPropagation();
       if (!btnState && id) {
-        disp(addItem({ id, title, img, price, qnt: 1 }));
+        incItem({ id, title, img, price });
         toast('Item added');
       }
       setCartState(true);
@@ -41,7 +39,7 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
   const addItemBtnCart = React.useCallback(() => {
     setBtnState(true);
     if (!btnState) {
-      disp(addItem({ id, title, img, price, qnt: 1 }));
+      incItem({ id, title, img, price });
       toast('Item added');
     }
   }, [id, title, img, price, btnState]);

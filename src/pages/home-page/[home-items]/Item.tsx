@@ -54,12 +54,8 @@ const MemoAddItemAndGoToCartBtn = React.memo(
 );
 
 export const Item = ({ id, title, text, rank, img, price, color, shadow }: TItem) => {
-  const { btnState, addItemBtn, addItemBtnCart } = useItemBtnsLogic({
-    id,
-    title,
-    img,
-    price,
-  });
+  const item = { id, title, img, price };
+  const { btnState, addItemBtn, addItemBtnCart } = useItemBtnsLogic(item);
 
   return (
     <div
