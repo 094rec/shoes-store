@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useFetchOne } from '../../hooks';
-import { getDataFromLS } from '../../utils';
+import { useOne } from '../../hooks';
+import { getZusDataFromLS } from '../../utils';
 import { Cart, Containter, Loader, NotFound } from '../../components';
 import { HeroSingle } from './[shoe-hero]';
 
@@ -13,9 +13,10 @@ export default function ShoePage() {
   const { id } = useParams();
   if (!id) return null;
 
-  const initCol = getDataFromLS().initCol;
-  const { color } = initCol.find((el) => el.id === id) || {};
-  const { data, isLoading, error } = useFetchOne(id);
+  const { data, isLoading, error } = useOne(id);
+
+  const colorData = getZusDataFromLS('colors-state')?.colors || [];
+  const { color } = colorData.find((el: partItem) => el.id === id) || {};
 
   return (
     <>

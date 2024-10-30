@@ -1,31 +1,24 @@
 import React from 'react';
-import { TItem } from '..';
 import { useClickAway } from 'react-use';
-import { useFilterStore } from '../../../store';
+import { useFilStore } from '../../../store';
 import { TbNumber4Small, TbNumber6Small } from 'react-icons/tb';
 
-type Props = {
-  data: TItem[];
-};
-
-export const SelectLimit = ({ data }: Props) => {
-  const { limit, setLimit } = useFilterStore();
+export const SelectLimit = ({ itemsCount }: { itemsCount: number }) => {
+  const { limit, setLimit } = useFilStore();
   const [dropState, setDropState] = React.useState(false);
   const ref = React.useRef(null);
   useClickAway(ref, () => setDropState(false));
-  
+
   const options = React.useMemo(
     () => [
       { value: 4, icon: <TbNumber4Small className="size-6 -m-1 text-black/50" /> },
       { value: 6, icon: <TbNumber6Small className="size-6 -m-1 text-black/50" /> },
       {
-        value: data?.length,
-        icon: (
-          <span className="text-xs px-0.5 text-black/60 font-semibold">{data?.length}</span>
-        ),
+        value: itemsCount,
+        icon: <span className="text-xs px-0.5 text-black/60 font-semibold">{itemsCount}</span>,
       },
     ],
-    [data?.length],
+    [itemsCount],
   );
 
   return (

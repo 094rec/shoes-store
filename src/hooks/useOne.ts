@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { TItem } from '../pages/home-page';
 
-export const useFetchOne = (id: string) => {
+export const useOne = (id: string) => {
   const { data, isLoading, error } = useQuery<TItem>({
     queryKey: ['shoe', id],
     queryFn: async () => {

@@ -1,25 +1,6 @@
 import React from 'react';
-import { TItem } from '../pages/home-page';
 
-export const useSetDataToLS = ({
-  dataAll,
-  btnState,
-  id,
-}: {
-  dataAll?: TItem[];
-  btnState?: boolean;
-  id?: string;
-}) => {
-  {
-    React.useEffect(() => {
-      if (dataAll && dataAll.length > 0) {
-        localStorage.setItem(
-          'data-colors',
-          JSON.stringify(dataAll.map((el) => ({ id: el.id, color: el.color }))),
-        );
-      }
-    }, [dataAll]);
-  }
+export const useSetDataToLS = ({ btnState, id }: { btnState?: boolean; id?: string }) => {
   {
     React.useEffect(() => {
       if (id && btnState) {

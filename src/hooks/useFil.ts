@@ -1,10 +1,12 @@
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { TItem } from '../pages/home-page';
-import { useFilterStore, useSearchStore } from '../store';
+import { useFilStore, useSearchStore } from '../store';
 
-export const useFetchFilteredShoes = () => {
-  const { page, limit, param } = useFilterStore();
+export const useFil = () => {
+  const { page, limit, param } = useFilStore();
   const { searchVal } = useSearchStore();
+  const setItems = useFilStore((state) => state.setItems);
   const { data, isLoading, error } = useQuery<TItem[]>({
     queryKey: ['shoes', page, limit, searchVal, param],
     queryFn: async () => {
@@ -17,5 +19,10 @@ export const useFetchFilteredShoes = () => {
     staleTime: 1000 * 60 * 1,
     retry: 1,
   });
+
+  React.useEffect(() => {
+    setItems(data || []);
+  }, [data, setItems]);
+
   return { data: data ?? [], isLoading, error };
 };

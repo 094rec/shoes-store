@@ -47,7 +47,7 @@ export const useCartStore = create<CartState>()(
           set((state) => {
             const item = state.items.find((el) => el.id === id);
             if (item) {
-              if ((item.qnt ?? 0) > 1) item.qnt! --;
+              if ((item.qnt ?? 0) > 1) item.qnt = (item.qnt ?? 0) - 1;
               else state.items = state.items.filter((el) => el.id !== id);
             } 
             recalculate(state);
@@ -66,14 +66,8 @@ export const useCartStore = create<CartState>()(
             state.totalQnt = 0;
           }),
 
-        selById: (id) => {
-          return get().items.find((el) => el.id === id);
-        },
-
-        leftOne: (id) => {
-          return get().items.filter((el) => el.id !== id).length === 0;
-        },
-
+        selById: (id) => get().items.find((el) => el.id === id),
+        leftOne: (id) => get().items.filter((el) => el.id !== id).length === 0,
       })),
     ),
     {

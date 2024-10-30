@@ -7,12 +7,12 @@ import { SelectParam } from './SelectParam';
 type Props = {
   items: TItem[];
   searchVal: string;
+  hasItems: boolean;
 };
 
 const MemoizedItem = React.memo(Item);
 
-export const Items = ({ items = [], searchVal }: Props) => {
-  const hasItems = (items || []).length > 0;
+export const Items = ({ items = [], searchVal, hasItems }: Props) => {
   return (
     <>
       <div

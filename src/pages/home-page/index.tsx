@@ -1,10 +1,6 @@
-import {
-  useFetchAllShoes,
-  useFetchFilteredShoes,
-  useSetDataToLS,
-} from '../../hooks';
+import { useAll, useFil } from '../../hooks';
 import { heroapi } from '../../data/initData';
-import { useSearchStore } from '../../store';
+import { useFilStore, useSearchStore } from '../../store';
 import { Cart, Loader, NotFound } from '../../components';
 import { Hero, Items, Pagination } from '..';
 
@@ -23,12 +19,10 @@ export type TItem = {
 export const HomePage = () => {
   const { searchVal } = useSearchStore();
 
-  const { data, isLoading, error } = useFetchFilteredShoes();
-  const hasItems = (data || []).length > 0;
+  const { data, isLoading, error } = useFil();
+  const hasItems = useFilStore((state) => state.hasItems);
 
-  const { data: dataAll, error: errorAll } = useFetchAllShoes();
-
-  useSetDataToLS({ dataAll });
+  const { error: errorAll } = useAll();
 
   return (
     <>
@@ -42,23 +36,16 @@ export const HomePage = () => {
         size={window.innerWidth > 640 ? 80 : 65}
         loading={isLoading}
       />
-      {!isLoading && (
+      {!isLoading && !searchVal && (
         <>
-          <Items
-            searchVal={searchVal}
-            items={data}
-          />
-          {!hasItems && !searchVal && (
+          <Items searchVal={searchVal} items={data} hasItems={hasItems} />
+          {!hasItems && (
             <NotFound
               title="Shoes not found. Please try to reload an App"
               className="-mt-8 mb-10 text-red-900/90 md:text-2xl"
             />
           )}
-          {hasItems && !searchVal && !errorAll && (
-            <Pagination
-              data={dataAll}
-            />
-          )}
+          {!errorAll && <Pagination hasItems={hasItems} />}
         </>
       )}
     </>

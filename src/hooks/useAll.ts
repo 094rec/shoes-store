@@ -1,7 +1,10 @@
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { TItem } from '../pages/home-page';
+import { useAllStore } from '../store';
 
-export const useFetchAllShoes = () => {
+export const useAll = () => {
+  const setItems = useAllStore((state) => state.setItems);
   const { data, isLoading, error } = useQuery<TItem[]>({
     queryKey: ['all-shoes'],
     queryFn: async () => {
@@ -12,6 +15,10 @@ export const useFetchAllShoes = () => {
     staleTime: 1000 * 60 * 10,
     retry: false,
   });
+
+  React.useEffect(() => {
+    setItems(data || []);
+  }, [data, setItems]);
 
   return { data: data || [], isLoading, error };
 };

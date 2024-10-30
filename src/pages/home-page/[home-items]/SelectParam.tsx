@@ -1,13 +1,13 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useClickAway } from 'react-use';
-import { useFilterStore, useSearchStore } from '../../../store';
+import { useFilStore, useSearchStore } from '../../../store';
 import { AiFillLike } from 'react-icons/ai';
 import { GrMoney } from 'react-icons/gr';
 import { MdAbc } from 'react-icons/md';
 
 export const SelectParam = () => {
-  const { param, setParam } = useFilterStore();
+  const { param, setParam } = useFilStore();
   const { searchVal } = useSearchStore();
 
   const options = React.useMemo(
