@@ -1,7 +1,6 @@
 import React from 'react';
-import { useCartStateStore, useCartStore } from '../store';
-import { useSetDataToLS } from '.';
-import { getDataFromLS, toast } from '../utils';
+import { useBtnStore, useCartStateStore, useCartStore } from '../store';
+import { toast } from '../utils';
 
 type CartBtnProps = {
   id: string;
@@ -12,16 +11,15 @@ type CartBtnProps = {
 
 export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
   const { setCartState } = useCartStateStore();
-  const initSt = getDataFromLS(id).initSt;
-  const [btnState, setBtnState] = React.useState(initSt);
   const incItem = useCartStore((state) => state.incItem);
   const item = useCartStore((state) => state.selById(id));
 
-  React.useEffect(() => {
-    if (!item) setBtnState(false);
-  }, [item]);
+  const btnState = useBtnStore((state) => state.btnState[id]);
+  const setBtnState = useBtnStore((state) => state.setBtnState);
 
-  useSetDataToLS({ btnState, id });
+  React.useEffect(() => {
+    if (!item) setBtnState(id, false);
+  }, [item]);
 
   const addItemBtn = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -31,13 +29,13 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
         toast('Item added');
       }
       setCartState(true);
-      setBtnState(true);
+      setBtnState(id, true);
     },
     [id, title, img, price, btnState],
   );
 
   const addItemBtnCart = React.useCallback(() => {
-    setBtnState(true);
+    setBtnState(id, true);
     if (!btnState) {
       incItem({ id, title, img, price });
       toast('Item added');

@@ -36,9 +36,9 @@ export const HomePage = () => {
         size={window.innerWidth > 640 ? 80 : 65}
         loading={isLoading}
       />
+      <Items searchVal={searchVal} items={data} hasItems={hasItems} />
       {!isLoading && !searchVal && (
         <>
-          <Items searchVal={searchVal} items={data} hasItems={hasItems} />
           {!hasItems && (
             <NotFound
               title="Shoes not found. Please try to reload an App"

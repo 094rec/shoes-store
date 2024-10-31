@@ -18,7 +18,7 @@ export const Loader = ({
   const LoaderComp = type === 'moon' ? MoonLoader : PulseLoader;
   if (!loading) return null;
   return (
-    <div className={`flex justify-center items-center h-screen opacity-${opacity}`}>
+    <div className={`absolute z-20 flex justify-center items-center h-screen w-[100vh] opacity-${opacity}`}>
       <LoaderComp color={color} size={size} loading={loading} />
     </div>
   );
