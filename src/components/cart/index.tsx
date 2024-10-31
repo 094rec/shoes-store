@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useCartStateStore, useCartStore } from '../../store';
+import { useCartStateStore, useCartStore } from '@/store';
 import { useClickAway } from 'react-use';
 import { CartCount, CartEmpty } from '..';
 import { CartItem } from './CartItem';

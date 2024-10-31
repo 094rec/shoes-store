@@ -1,7 +1,7 @@
-import { useAll, useFil } from '../../hooks';
-import { heroapi } from '../../data/initData';
-import { useFilStore, useSearchStore } from '../../store';
-import { Cart, Loader, NotFound } from '../../components';
+import { useAll, useFil } from '@/hooks';
+import { heroapi } from '@/data/initData';
+import { useFilStore, useSearchStore } from '@/store';
+import { Cart, Loader, NotFound } from '@/components';
 import { Hero, Items, Pagination } from '..';
 
 export type TItem = {
@@ -36,7 +36,7 @@ export const HomePage = () => {
         size={window.innerWidth > 640 ? 80 : 65}
         loading={isLoading}
       />
-      <Items searchVal={searchVal} items={data} hasItems={hasItems} />
+      <Items searchVal={searchVal} items={data} hasItems={hasItems} isLoading={isLoading} />
       {!isLoading && !searchVal && (
         <>
           {!hasItems && (

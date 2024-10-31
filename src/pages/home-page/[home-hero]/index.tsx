@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useSearchStore } from '../../../store';
+import { useSearchStore } from '@/store';
 import { Clip } from './Clip';
 
 type Props = {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useBtnStore, useCartStateStore, useCartStore } from '../store';
-import { toast } from '../utils';
+import { useBtnStore, useCartStateStore, useCartStore } from '@/store';
+import { toast } from '@/utils';
 
 type CartBtnProps = {
   id: string;

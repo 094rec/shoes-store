@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TCartItem, useCartStateStore, useCartStore  } from '../store';
+import { TCartItem, useCartStateStore, useCartStore  } from '@/store';
 
 export const useCartItemCallbacks = ({ id, title, img, price }: TCartItem) => {
   const nav = useNavigate();

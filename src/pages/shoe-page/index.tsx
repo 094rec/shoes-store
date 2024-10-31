@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useOne } from '../../hooks';
-import { getZusDataFromLS } from '../../utils';
-import { Cart, Containter, Loader, NotFound } from '../../components';
+import { useOne } from '@/hooks';
+import { getZusDataFromLS } from '@/utils';
+import { Cart, Containter, Loader, NotFound } from '@/components';
 import { HeroSingle } from './[shoe-hero]';
 
 export type partItem = {

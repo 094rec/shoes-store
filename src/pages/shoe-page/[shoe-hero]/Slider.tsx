@@ -15,7 +15,6 @@ export const Slider = ({ imgs }: Props) => {
         modules={[Navigation, Pagination]}
         spaceBetween={20}
         slidesPerView={1}
-        // navigation={true}
         pagination={{ clickable: true }}
         loop={true}
       >

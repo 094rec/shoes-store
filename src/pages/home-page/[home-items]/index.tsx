@@ -1,18 +1,20 @@
 import React from 'react';
 import clsx from 'clsx';
 import { TItem } from '..';
-import { Item } from './Item';
+import { Skeleton } from '@/components/ui/skeleton';
 import { SelectParam } from './SelectParam';
+import { Item } from './Item';
 
 type Props = {
   items: TItem[];
   searchVal: string;
   hasItems: boolean;
+  isLoading: boolean;
 };
 
 const MemoizedItem = React.memo(Item);
 
-export const Items = ({ items = [], searchVal, hasItems }: Props) => {
+export const Items = ({ items = [], searchVal, hasItems, isLoading }: Props) => {
   return (
     <>
       <div
@@ -30,8 +32,14 @@ export const Items = ({ items = [], searchVal, hasItems }: Props) => {
             >
               {!searchVal && hasItems && <p>Popular Sales</p>}
               {searchVal && (
-                <p>
-                  Found: {items.length} {!hasItems && <span>(·•᷄∩•᷅ )</span>}
+                <p className="flex items-center">
+                  Found:
+                  {!isLoading ? (
+                    <span className="ml-2">{items.length}</span>
+                  ) : (
+                    <Skeleton className="ml-2 sm:ml-3 w-[35px] sm:w-[45px] h-[24px] sm:h-[30px] rounded-lg bg-blue-400/80 opacity-5" />
+                  )}
+                  {!isLoading && !hasItems && <span>(·•᷄∩•᷅ )</span>}
                 </p>
               )}
             </h3>

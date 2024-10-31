@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useItemBtnsLogic } from '../../../hooks';
+import { useItemBtnsLogic } from '@/hooks';
 import { IoCaretBack } from 'react-icons/io5';
-import { TItem } from '../../home-page';
+import { TItem } from '@/pages/home-page';
 
 export const Desc = ({ id, title, text, img, price }: TItem) => {
   const item = { id, title, img, price };

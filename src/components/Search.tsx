@@ -1,6 +1,6 @@
 import React from 'react';
 import debounce from 'debounce';
-import { useSearchStore } from '../store';
+import { useSearchStore } from '@/store';
 import { IoCloseOutline } from 'react-icons/io5';
 
 type Props = {

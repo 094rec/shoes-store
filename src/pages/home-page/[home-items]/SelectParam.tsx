@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useClickAway } from 'react-use';
-import { useFilStore, useSearchStore } from '../../../store';
+import { useFilStore, useSearchStore } from '@/store';
 import { AiFillLike } from 'react-icons/ai';
 import { GrMoney } from 'react-icons/gr';
 import { MdAbc } from 'react-icons/md';

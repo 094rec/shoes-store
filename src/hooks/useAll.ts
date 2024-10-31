@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { TItem } from '../pages/home-page';
-import { useAllStore } from '../store';
+import { TItem } from '@/pages/home-page';
+import { useAllStore } from '@/store';
 
 export const useAll = () => {
   const setItems = useAllStore((state) => state.setItems);

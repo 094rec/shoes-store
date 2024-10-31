@@ -1,5 +1,5 @@
 import React from 'react';
-import { TItem } from '../../home-page';
+import { TItem } from '@/pages/home-page';
 import { Slider } from './Slider';
 import { Desc } from './Desc';
 

@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils';
 
 type Props = {
   title: string;
@@ -8,7 +8,7 @@ type Props = {
 export const NotFound = ({ title, className }: Props) => {
   return (
     <p
-      className={twMerge(
+      className={cn(
           'w-10/12 m-auto font-medium filter drop-shadow-md text-center text-lg xx:text-xl',
           className,
       )}

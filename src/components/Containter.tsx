@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils';
 
 type Props = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type Props = {
 export const Containter = ({ children, color, className }: Props) => {
   return (
     <div
-      className={twMerge(
+      className={cn(
         'relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-b p-6 from-blue-500 to-blue-400',
         className,
         color,

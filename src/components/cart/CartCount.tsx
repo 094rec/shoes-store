@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import clsx from 'clsx';
-import { useCartStateStore, useCartStore } from '../../store';
+import { useCartStateStore, useCartStore } from '@/store';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import { TiArrowBack } from 'react-icons/ti';
 

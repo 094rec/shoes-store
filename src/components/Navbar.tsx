@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useCartStateStore, useCartStore, useSearchStore } from '../store';
+import { useCartStateStore, useCartStore, useSearchStore } from '@/store';
 import { SiNike } from 'react-icons/si';
 import { BsBag } from 'react-icons/bs';
 import { Search } from './Search';

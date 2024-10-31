@@ -1,6 +1,6 @@
 import React from 'react';
 import { useClickAway } from 'react-use';
-import { useFilStore } from '../../../store';
+import { useFilStore } from '@/store';
 import { TbNumber4Small, TbNumber6Small } from 'react-icons/tb';
 
 export const SelectLimit = ({ itemsCount }: { itemsCount: number }) => {

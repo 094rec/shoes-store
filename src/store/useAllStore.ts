@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { TItem } from '../pages/home-page';
+import { TItem } from '@/pages/home-page';
 
 type AllState = {
   items: TItem[];

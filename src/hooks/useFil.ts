@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { TItem } from '../pages/home-page';
-import { useFilStore, useSearchStore } from '../store';
+import { TItem } from '@/pages/home-page';
+import { useFilStore, useSearchStore } from '@/store';
 
 export const useFil = () => {
   const { page, limit, param } = useFilStore();

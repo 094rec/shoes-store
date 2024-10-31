@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import { useFilStore, useAllStore } from '../../../store';
+import { useFilStore, useAllStore } from '@/store';
 import { SelectLimit } from './SelectLimit';
 
 export const Pagination = ({ hasItems }: { hasItems: boolean }) => {
