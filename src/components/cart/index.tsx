@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useCartStateStore, useCartStore } from '@/store';
-import { useClickAway } from 'react-use';
+import { useOutsideClick } from '@/hooks';
 import { CartCount, CartEmpty } from '..';
 import { CartItem } from './CartItem';
 
@@ -13,8 +13,7 @@ export const Cart = () => {
   const totalQnt = useCartStore((state) => state.totalQnt);
 
   const { cartState, setCartState } = useCartStateStore();
-  const ref = React.useRef(null);
-  useClickAway(ref, () => setCartState(false));
+  const ref = useOutsideClick(() => setCartState(false));
 
   return (
     <div
