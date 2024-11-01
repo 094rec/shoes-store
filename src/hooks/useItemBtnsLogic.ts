@@ -1,6 +1,7 @@
 import React from 'react';
-import { useBtnStore, useCartStateStore, useCartStore } from '@/store';
 import { toast } from '@/utils';
+import { incItem, useBtnStore, useCartStateStore } from '@/store';
+import { useItemById } from './useSelectors';
 
 type CartBtnProps = {
   id: string;
@@ -10,10 +11,8 @@ type CartBtnProps = {
 };
 
 export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
-  const { setCartState } = useCartStateStore();
-  const incItem = useCartStore((state) => state.incItem);
-  const item = useCartStore((state) => state.selById(id));
-
+  const setCartState = useCartStateStore((state) => state.setCartState);
+  const item = useItemById(id); //react selector
   const btnState = useBtnStore((state) => state.btnState[id]);
   const setBtnState = useBtnStore((state) => state.setBtnState);
 

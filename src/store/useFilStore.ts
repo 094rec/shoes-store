@@ -1,59 +1,35 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { TItem } from '@/pages/home-page';
-import { z } from 'zod';
+import { valFilPersistedState } from '@/utils';
 
-const paramSchema = z.coerce
-  .string()
-  .refine((val) => ['title', 'price', 'rank'].includes(val));
-
-type FilState = {
-  items: TItem[];
-  setItems: (items: TItem[]) => void;
-  hasItems: boolean;
-
-  page: number;
-  limit: number;
-  active: number;
-  param: string;
-  setPage: (page: number) => void;
-  setLimit: (limit: number) => void;
-  setActive: (active: number) => void;
-  setParam: (param: string) => void;
-};
-
-export const useFilStore = create<FilState>()(
+export const useFilStore = create(
   persist(
     (set) => ({
-      items: [],
-      setItems: (items) => set({ items, hasItems: items.length > 0 }),
+      items: [] as TItem[],
+      setItems: (items: TItem[]) => set({ items, hasItems: items.length > 0 }),
       hasItems: false,
+
+      itemsForVal: [] as TItem[], //itemsForValidation
+      setItemsForVal: (items: TItem[]) => set({ itemsForVal: items, itemsCount: items.length }),
+      itemsCount: 0,
 
       page: 1,
       limit: 4,
-      active: 1,
       param: 'title',
-      setPage: (page) => set({ page }),
-      setLimit: (limit) => set({ limit, page: 1, active: 1 }),
-      setActive: (active) => set({ active }),
-      setParam: (param) => set({ param }),
+      setPage: (page: number) => set({ page }),
+      setLimit: (limit: number) => set({ limit, page: 1 }),
+      setParam: (param: string) => set({ param }),
     }),
     {
       name: 'filter-state',
       partialize: (state) => ({
         page: state.page,
         limit: state.limit,
-        active: state.active,
         param: state.param,
+        count: state.itemsCount, //count for maxlimit
       }),
-      merge: (persistedState: any, currentState) => {
-        const parsedParam = paramSchema.safeParse(persistedState?.param);
-        return {
-          ...currentState,
-          ...persistedState,
-          param: parsedParam.success ? parsedParam.data : 'title',
-        };
-      },
+      merge: valFilPersistedState,
     },
   ),
 );

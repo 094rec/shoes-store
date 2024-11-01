@@ -1,7 +1,7 @@
 import React from 'react';
 import { RiDeleteBack2Line } from 'react-icons/ri';
 import { useCartItemCallbacks } from '@/hooks';
-import { TCartItem } from '@/store';
+import { TCartItem } from '@/utils';
 
 const MemoImg = React.memo(
   ({ handleImg, img, title }: { handleImg: () => void; img: string; title: string }) => (

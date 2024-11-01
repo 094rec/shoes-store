@@ -12,7 +12,9 @@ export const Cart = () => {
   const total = useCartStore((state) => state.total);
   const totalQnt = useCartStore((state) => state.totalQnt);
 
-  const { cartState, setCartState } = useCartStateStore();
+  const cartState = useCartStateStore((state) => state.cartState);
+  const setCartState = useCartStateStore((state) => state.setCartState);
+
   const ref = useOutsideClick(() => setCartState(false));
 
   return (

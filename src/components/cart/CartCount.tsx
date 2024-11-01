@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import clsx from 'clsx';
-import { useCartStateStore, useCartStore } from '@/store';
+import { removeAllItems, useCartStateStore, useCartStore } from '@/store';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import { TiArrowBack } from 'react-icons/ti';
 
@@ -25,8 +25,8 @@ const MemoDeleteBtn = React.memo(
 
 export const CartCount = React.memo(() => {
   const totalQnt = useCartStore((state) => state.totalQnt);
-  const removeAllItems = useCartStore((state) => state.removeAllItems);
-  const { cartState, setCartState } = useCartStateStore();
+  const cartState = useCartStateStore((state) => state.cartState);
+  const setCartState = useCartStateStore((state) => state.setCartState);
 
   const closeCart = useCallback(() => {
     setCartState(false);

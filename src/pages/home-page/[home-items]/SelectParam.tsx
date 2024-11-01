@@ -7,8 +7,9 @@ import { GrMoney } from 'react-icons/gr';
 import { MdAbc } from 'react-icons/md';
 
 export const SelectParam = () => {
-  const { param, setParam } = useFilStore();
-  const { searchVal } = useSearchStore();
+  const param = useFilStore((state) => state.param);
+  const setParam = useFilStore((state) => state.setParam);
+  const searchVal = useSearchStore((state) => state.searchVal);
 
   const options = React.useMemo(
     () => [

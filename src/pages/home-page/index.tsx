@@ -17,7 +17,7 @@ export type TItem = {
 };
 
 export const HomePage = () => {
-  const { searchVal } = useSearchStore();
+  const searchVal = useSearchStore((state) => state.searchVal);
 
   const { data, isLoading, error } = useFil();
   const hasItems = useFilStore((state) => state.hasItems);

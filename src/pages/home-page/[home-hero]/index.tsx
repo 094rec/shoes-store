@@ -19,8 +19,15 @@ type Props = {
 
 const MemoizedClip = React.memo(Clip);
 
-export const Hero = ({ title, subtitle, img, btntext, videos = [], sociallinks = [] }: Props) => {
-  const { searchVal } = useSearchStore();
+export const Hero = ({
+  title,
+  subtitle,
+  img,
+  btntext,
+  videos = [],
+  sociallinks = [],
+}: Props) => {
+  const searchVal = useSearchStore((state) => state.searchVal);
   return (
     <>
       <div

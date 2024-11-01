@@ -1,10 +1,15 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { TItem } from '@/pages/home-page';
-import { useAllStore } from '@/store';
+import { useAllStore, useFilStore } from '@/store';
+
+type FilState = {
+  setItemsForVal: (items: TItem[]) => void;
+};
 
 export const useAll = () => {
   const setItems = useAllStore((state) => state.setItems);
+  const setItemsForVal = useFilStore((state: FilState) => state.setItemsForVal);
   const { data, isLoading, error } = useQuery<TItem[]>({
     queryKey: ['all-shoes'],
     queryFn: async () => {
@@ -17,8 +22,9 @@ export const useAll = () => {
   });
 
   React.useEffect(() => {
-    setItems(data || []);
-  }, [data, setItems]);
+    setItems(data || []); //for pagination and colors-bg-singlepage
+    setItemsForVal(data || []); //for validate
+  }, [data, setItems, setItemsForVal]);
 
   return { data: data || [], isLoading, error };
 };

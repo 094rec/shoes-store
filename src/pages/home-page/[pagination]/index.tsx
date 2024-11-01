@@ -5,7 +5,9 @@ import { SelectLimit } from './SelectLimit';
 
 export const Pagination = ({ hasItems }: { hasItems: boolean }) => {
   const itemsCount = useAllStore((state) => state.itemsCount);
-  const { limit, active, page, setActive, setPage } = useFilStore();
+  const limit = useFilStore((state) => state.limit);
+  const page = useFilStore((state) => state.page);
+  const setPage = useFilStore((state) => state.setPage);
 
   const pagBtnQnt = Math.ceil(itemsCount / limit);
   const nums = Array.from({ length: Math.ceil(pagBtnQnt) }, (_, i) => i + 1);
@@ -13,7 +15,6 @@ export const Pagination = ({ hasItems }: { hasItems: boolean }) => {
   React.useEffect(() => {
     if (page > pagBtnQnt && pagBtnQnt !== 0) {
       setPage(1);
-      setActive(1);
     }
   }, [page, pagBtnQnt]);
 
@@ -30,11 +31,10 @@ export const Pagination = ({ hasItems }: { hasItems: boolean }) => {
                   key={n}
                   onClick={() => {
                     setPage(n);
-                    setActive(n);
                   }}
                   className={clsx(
                     'h-7 w-7 sm:h-8 sm:w-8 rounded-full font-medium xs:font-semibold text-xs sm:text-sm flex items-center justify-center btn-a',
-                    active === n
+                    page === n
                       ? 'bg-gradient-to-b from-blue-300 to-blue-500 hover:bg-blue-100 text-white shadow-sm shadow-blue-200'
                       : 'text-black/80 hover:bg-blue-400 hover:text-white',
                   )}
@@ -44,14 +44,13 @@ export const Pagination = ({ hasItems }: { hasItems: boolean }) => {
               ))}
             </div>
             <button
-              disabled={active === nums.length}
+              disabled={page === nums.length}
               onClick={() => {
-                setPage(active + 1);
-                setActive(active + 1);
+                setPage(page + 1);
               }}
               className={clsx(
                 'ml-1 h-6 w-6 xx:h-7 xx:w-7 sm:h-8 sm:w-8 rounded font-semibold text-sm flex items-center justify-center drop-shadow-xl cursor-pointer',
-                active === nums.length ? 'text-slate-600' : 'text-slate-800 btn-ah',
+                page === nums.length ? 'text-slate-600' : 'text-slate-800 btn-ah',
               )}
             >
               Next

@@ -9,8 +9,9 @@ type Props = {
 };
 
 export const Search = ({ tempSearch, setTempSearch }: Props) => {
+  const searchVal = useSearchStore((state) => state.searchVal);
+  const setSearchVal = useSearchStore((state) => state.setSearchVal);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const { searchVal, setSearchVal } = useSearchStore();
 
   React.useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {

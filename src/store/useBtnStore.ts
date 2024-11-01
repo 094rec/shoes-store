@@ -17,6 +17,6 @@ export const useBtnStore = create<BtnState>()(
     }),
     {
       name: 'btn-state',
-    }
-  )
+    },
+  ),
 );

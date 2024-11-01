@@ -1,16 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TCartItem, useCartStateStore, useCartStore  } from '@/store';
+import { decItem, incItem, removeItem, useCartStateStore } from '@/store';
+import { useItemById, useLeftOne } from './useSelectors';
+import { TCartItem } from '@/utils';
 
 export const useCartItemCallbacks = ({ id, title, img, price }: TCartItem) => {
   const nav = useNavigate();
-  const { setCartState } = useCartStateStore();
-  const incItem = useCartStore((state) => state.incItem);
-  const decItem = useCartStore((state) => state.decItem);
-  const removeItem = useCartStore((state) => state.removeItem);
-  const item = useCartStore((state) => state.selById(id));
-  const isLeftOne = useCartStore((state) => state.leftOne(id));
-
+  const setCartState = useCartStateStore((state) => state.setCartState);
+  const item = useItemById(id); //react selector
+  const isLeftOne = useLeftOne(id); //react selector
 
   const handleIncrease = React.useCallback(() => {
     incItem({ id, title, img, price });

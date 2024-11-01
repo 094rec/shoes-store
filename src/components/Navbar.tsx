@@ -11,10 +11,10 @@ const MemoizedSearch = React.memo(Search);
 export const Navbar = () => {
   const loc = useLocation();
   const nav = useNavigate();
-  const totalQnt = useCartStore((state) => state.totalQnt);
   const isHomePage = loc.pathname === '/';
-  const { setSearchVal } = useSearchStore();
-  const { setCartState } = useCartStateStore();
+  const totalQnt = useCartStore((state) => state.totalQnt);
+  const setSearchVal = useSearchStore((state) => state.setSearchVal);
+  const setCartState = useCartStateStore((state) => state.setCartState);
   const [navState, setNavState] = React.useState(false);
   const [tempSearch, setTempSearch] = React.useState('');
 
@@ -57,7 +57,9 @@ export const Navbar = () => {
       <div className="flex justify-between items-center">
         <MemoHomeBtn homeBtn={homeBtn} />
         <div className="relative flex items-center gap-2">
-          {isHomePage && <MemoizedSearch tempSearch={tempSearch} setTempSearch={setTempSearch} />}
+          {isHomePage && (
+            <MemoizedSearch tempSearch={tempSearch} setTempSearch={setTempSearch} />
+          )}
           <button className="relative" onClick={openCartBtn}>
             <BsBag
               className={clsx(

@@ -4,7 +4,8 @@ import { useFilStore } from '@/store';
 import { TbNumber4Small, TbNumber6Small } from 'react-icons/tb';
 
 export const SelectLimit = ({ itemsCount }: { itemsCount: number }) => {
-  const { limit, setLimit } = useFilStore();
+  const limit = useFilStore((state) => state.limit);
+  const setLimit = useFilStore((state) => state.setLimit);
   const [dropState, setDropState] = React.useState(false);
   const ref = React.useRef(null);
   useClickAway(ref, () => setDropState(false));
