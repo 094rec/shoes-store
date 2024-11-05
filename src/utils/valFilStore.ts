@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-//@logic reseting of maxpage sets in pagination
+//@logic reseting of maxpage sets in pagination/index
 const pageSchema = z.coerce.number().int().min(1); 
 const limitSchema = (count: number) => {
   return z.coerce

@@ -12,7 +12,7 @@ type CartBtnProps = {
 
 export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
   const setCartState = useCartStateStore((state) => state.setCartState);
-  const item = useItemById(id); //react selector
+  const item = useItemById(id); //reactive sel
   const btnState = useBtnStore((state) => state.btnState[id]);
   const setBtnState = useBtnStore((state) => state.setBtnState);
 
@@ -20,7 +20,7 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
     if (!item) setBtnState(id, false);
   }, [item]);
 
-  const addItemBtn = React.useCallback(
+  const onAddItemAndGoToCart = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.stopPropagation();
       if (!btnState && id) {
@@ -33,7 +33,7 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
     [id, title, img, price, btnState],
   );
 
-  const addItemBtnCart = React.useCallback(() => {
+  const onAddItem = React.useCallback(() => {
     setBtnState(id, true);
     if (!btnState) {
       incItem({ id, title, img, price });
@@ -41,5 +41,5 @@ export const useItemBtnsLogic = ({ id, title, img, price }: CartBtnProps) => {
     }
   }, [id, title, img, price, btnState]);
 
-  return { btnState, addItemBtn, addItemBtnCart };
+  return { btnState, onAddItemAndGoToCart, onAddItem };
 };

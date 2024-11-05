@@ -10,8 +10,9 @@ export const useFilStore = create(
       setItems: (items: TItem[]) => set({ items, hasItems: items.length > 0 }),
       hasItems: false,
 
-      itemsForVal: [] as TItem[], //itemsForValidation
-      setItemsForVal: (items: TItem[]) => set({ itemsForVal: items, itemsCount: items.length }),
+      itemsForVal: [] as TItem[],
+      setItemsForVal: (items: TItem[]) =>
+        set({ itemsForVal: items, itemsCount: items.length }),
       itemsCount: 0,
 
       page: 1,
@@ -27,8 +28,10 @@ export const useFilStore = create(
         page: state.page,
         limit: state.limit,
         param: state.param,
-        count: state.itemsCount, //count for maxlimit
+        //pass count for compute maxlimit
+        count: state.itemsCount,
       }),
+      //zod validation
       merge: valFilPersistedState,
     },
   ),

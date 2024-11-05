@@ -3,6 +3,7 @@ import { heroapi } from '@/data/initData';
 import { useFilStore, useSearchStore } from '@/store';
 import { Cart, Loader, NotFound } from '@/components';
 import { Hero, Items, Pagination } from '..';
+import React from 'react';
 
 export type TItem = {
   id: string;
@@ -15,6 +16,8 @@ export type TItem = {
   color: string;
   shadow: string;
 };
+
+const MemoPagination = React.memo(Pagination);
 
 export const HomePage = () => {
   const searchVal = useSearchStore((state) => state.searchVal);
@@ -45,7 +48,7 @@ export const HomePage = () => {
               className="-mt-8 mb-10 text-red-900/90 md:text-2xl"
             />
           )}
-          {!errorAll && <Pagination hasItems={hasItems} />}
+          {!errorAll && <MemoPagination hasItems={hasItems} />}
         </>
       )}
     </>

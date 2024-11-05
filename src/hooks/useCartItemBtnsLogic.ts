@@ -4,22 +4,22 @@ import { decItem, incItem, removeItem, useCartStateStore } from '@/store';
 import { useItemById, useLeftOne } from './useSelectors';
 import { TCartItem } from '@/utils';
 
-export const useCartItemCallbacks = ({ id, title, img, price }: TCartItem) => {
+export const useCartItemBtnsLogic = ({ id, title, img, price }: TCartItem) => {
   const nav = useNavigate();
   const setCartState = useCartStateStore((state) => state.setCartState);
-  const item = useItemById(id); //react selector
-  const isLeftOne = useLeftOne(id); //react selector
+  const item = useItemById(id); //reactive sel
+  const isLeftOne = useLeftOne(id); //reactive sel
 
-  const handleIncrease = React.useCallback(() => {
+  const onInc = React.useCallback(() => {
     incItem({ id, title, img, price });
   }, [id, title, img, price]);
 
-  const handleImg = React.useCallback(() => {
+  const onImgClick = React.useCallback(() => {
     nav(`/shoes/${id}`);
     setCartState(false);
   }, [id, setCartState]);
 
-  const handleDecrease = React.useCallback(() => {
+  const onDec = React.useCallback(() => {
     decItem(id);
     setTimeout(() => {
       if (isLeftOne && item && (item.qnt ?? 0) < 2) {
@@ -28,12 +28,12 @@ export const useCartItemCallbacks = ({ id, title, img, price }: TCartItem) => {
     }, 0);
   }, [id, item, isLeftOne]);
 
-  const handleDel = React.useCallback(() => {
+  const onRemove = React.useCallback(() => {
     removeItem(id);
     setTimeout(() => {
       if (isLeftOne) setCartState(false);
     }, 0);
   }, [id, isLeftOne]);
 
-  return { handleIncrease, handleDecrease, handleImg, handleDel };
+  return { onInc, onDec, onImgClick, onRemove };
 };

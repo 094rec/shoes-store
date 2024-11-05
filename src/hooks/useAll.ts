@@ -22,8 +22,8 @@ export const useAll = () => {
   });
 
   React.useEffect(() => {
-    setItems(data || []); //for pagination and colors-bg-singlepage
-    setItemsForVal(data || []); //for validate
+    setItems(data || []); 
+    setItemsForVal(data || []); 
   }, [data, setItems, setItemsForVal]);
 
   return { data: data || [], isLoading, error };

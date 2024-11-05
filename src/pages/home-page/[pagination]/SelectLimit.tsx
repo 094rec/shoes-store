@@ -25,7 +25,7 @@ export const SelectLimit = ({ itemsCount }: { itemsCount: number }) => {
   return (
     <div className="relative z-20 grid items-center justify-start">
       <button
-        onClick={(e) => {
+        onClick={(e) => {//onOpenLimit
           e.stopPropagation();
           setDropState(!dropState);
         }}
@@ -43,7 +43,7 @@ export const SelectLimit = ({ itemsCount }: { itemsCount: number }) => {
             {options.map((option) => (
               <li
                 key={option.value}
-                onClick={() => {
+                onClick={() => {//onSelectLimit
                   setDropState(false);
                   setLimit(option.value);
                 }}

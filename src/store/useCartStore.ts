@@ -9,7 +9,7 @@ type CartState = {
   totalQnt: number;
 };
 
-const initFilStore = {
+const initCart = {
   items: [],
   total: 0,
   totalQnt: 0,
@@ -51,16 +51,10 @@ export const removeAllItems = () =>
     state.totalQnt = 0;
   });
 
-// export const selById = (id: string) =>
-//   useCartStore.getState().items.find((el) => el.id === id);
-
-// export const leftOne = (id: string) =>
-//   useCartStore.getState().items.filter((el) => el.id !== id).length === 0;
-
 export const useCartStore = create<CartState>()(
   persist(
     immer(
-      devtools(() => initFilStore, {
+      devtools(() => initCart, {
         name: 'cartstore',
       }),
     ),
@@ -71,9 +65,10 @@ export const useCartStore = create<CartState>()(
         total: state.total,
         totalQnt: state.totalQnt,
       }),
+      //zod validation
       merge: valCartPersistedState,
     },
   ),
 );
-
+//pre-check data(before zod validation)
 initCartStore();

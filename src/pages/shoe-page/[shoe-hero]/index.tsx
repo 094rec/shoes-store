@@ -3,19 +3,15 @@ import { TItem } from '@/pages/home-page';
 import { Slider } from './Slider';
 import { Desc } from './Desc';
 
-type Props = {
-  item: TItem;
-};
+const MemoSlider = React.memo(Slider);
 
-const MemoizedSlider = React.memo(Slider);
-
-export const HeroSingle = ({ item }: Props) => {
+export const HeroSingle = ({ item }: {item: TItem}) => {
   const { img, title, imgs } = item;
   return (
     <>
       <div className="relative flex justify-center items-center w-full mb-6">
         {imgs?.length ? (
-          <MemoizedSlider imgs={imgs} />
+          <MemoSlider imgs={imgs} />
         ) : (
           <img
             src={img}

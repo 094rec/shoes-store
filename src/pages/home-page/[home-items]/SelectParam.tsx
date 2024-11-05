@@ -27,7 +27,7 @@ export const SelectParam = () => {
   return (
     <div className="relative z-20 grid items-center justify-start">
       <button
-        onClick={(e) => {
+        onClick={(e) => {//onOpenParam
           e.stopPropagation();
           setDropState(!dropState);
         }}
@@ -53,7 +53,7 @@ export const SelectParam = () => {
             {options.map((option) => (
               <li
                 key={option.value}
-                onClick={() => {
+                onClick={() => {//onSelectParam
                   setDropState(false);
                   setParam(option.value);
                 }}

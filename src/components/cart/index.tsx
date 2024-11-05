@@ -5,18 +5,17 @@ import { useOutsideClick } from '@/hooks';
 import { CartCount, CartEmpty } from '..';
 import { CartItem } from './CartItem';
 
-const MemoizedCartItem = React.memo(CartItem);
+const MemoCartItem = React.memo(CartItem);
 
 export const Cart = () => {
   const items = useCartStore((state) => state.items);
   const total = useCartStore((state) => state.total);
   const totalQnt = useCartStore((state) => state.totalQnt);
-
+  
   const cartState = useCartStateStore((state) => state.cartState);
   const setCartState = useCartStateStore((state) => state.setCartState);
-
+  
   const ref = useOutsideClick(() => setCartState(false));
-
   return (
     <div
       className={clsx(
@@ -31,7 +30,7 @@ export const Cart = () => {
         <CartCount />
         {totalQnt < 1 && <CartEmpty />}
         <div className="flex flex-col gap-4 overflow-y-scroll scroll-smooth scroll-hidden items-center w-full h-screen p-3 drop-shadow-sm">
-          {items?.map((item) => <MemoizedCartItem {...item} key={item.id} />)}
+          {items?.map((item) => <MemoCartItem {...item} key={item.id} />)}
         </div>
         <div className="fixed1 sticky bottom-0 bg-white flex justify-between items-center gap-5 w-full p-3 pl-4 pb-4 drop-shadow-sm overflow-x-hidden">
           <p className="text-sm lg:text-base text-slate-900">Subtotal:</p>

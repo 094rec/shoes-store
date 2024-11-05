@@ -4,11 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-type Props = {
-  imgs: string[];
-};
-
-export const Slider = ({ imgs }: Props) => {
+export const Slider = ({ imgs }: { imgs: string[] }) => {
   return (
     <div className="relative h-full w-full flex max-w-lg">
       <Swiper
